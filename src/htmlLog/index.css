@@ -1,0 +1,20 @@
+#htmlLogDisplay {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+  font-family: monospace;
+}
+
+#htmlLogDisplay>.row {
+  display: flex;
+}
+#htmlLogDisplay>.row:before {
+  content: '>';
+  margin-right: 5px;
+  color: #aaa;
+}
+#htmlLogDisplay>.row>.timestamp {
+  margin-left: auto;
+  color: #aaa;
+  font-style: italic;
+}
