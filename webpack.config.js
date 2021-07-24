@@ -15,6 +15,9 @@ module.exports = {
         filename: '[name].js',
         clean: true
     },
+    resolve: {
+        extensions: ['.js', '.ts']
+    },
     plugins: [
         new plugins.html({template: 'index.html'}),
         new plugins.css()
