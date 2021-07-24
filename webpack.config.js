@@ -57,5 +57,11 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 0
+        },
+    },
     devtool: "source-map",
 };
