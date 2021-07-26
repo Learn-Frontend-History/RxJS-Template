@@ -19,6 +19,14 @@ function htmlLog() {
 
     log(...args) {
       args.forEach(add);
+    },
+
+    group() {
+      console.log('-'.repeat(30))
+    },
+
+    groupEnd() {
+      console.log('-'.repeat(30))
     }
   }
 }
