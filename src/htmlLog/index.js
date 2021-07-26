@@ -9,7 +9,8 @@ function htmlLog() {
     const parser = new DOMParser()
 
     logElement.append(parser.parseFromString(
-        `<div class="row"><span class="message">${message}</span><span class="timestamp">${(new Date()).toISOString()}</span></div>`,
+        `<div class="row"><span class="message">${message}</span>` +
+        `<span class="timestamp">${(new Date()).toISOString()}</span></div>`,
         'text/html'
     ).body.firstChild)
   }
