@@ -1,0 +1,18 @@
+body.light {
+    background: #fff;
+    color: #4d5156;
+}
+
+body.light h1 {
+    color: #202123;
+}
+
+body.light button {
+    background-color: #fff;
+    color: #303133;
+    border: 1px solid #303133;
+}
+
+#container {
+    border-color: #4d5156;
+}
