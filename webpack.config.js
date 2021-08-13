@@ -43,7 +43,7 @@ module.exports = {
         new plugins.css()
     ],
     devServer: {
-        port: 4200
+        port: 4201
     },
     module: {
         rules: [
