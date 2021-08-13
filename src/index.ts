@@ -13,3 +13,7 @@ document.getElementById('toggleTheme').addEventListener('click', _ => {
         document.body.className = map[document.body.className]
     )
 })
+
+document.getElementById('clearLog').addEventListener('click', _ => {
+    console.clear()
+})
