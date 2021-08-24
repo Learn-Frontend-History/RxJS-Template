@@ -13,6 +13,6 @@ body.dark button {
     border: none;
 }
 
-#container {
+body.dark #container {
     border-color: #bdc1c5;
 }
