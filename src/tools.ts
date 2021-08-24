@@ -15,6 +15,14 @@ export interface Options {
     }[]
 }
 
+export interface DocumentOptions {
+    title: string
+}
+
+export function prepareDocument(options: DocumentOptions) {
+    document.title = `RxJS - ${options.title}`
+}
+
 export function prepareDOM(options: Options) {
     const parser = new DOMParser()
     document.getElementById('container').append(
