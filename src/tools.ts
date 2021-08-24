@@ -1,22 +1,14 @@
 export type Source = 'Native' | 'RxJS'
 
-export function print(source: Source, value: any) {
-    console.log(`${source}: ${value}`)
-}
-
-export interface Options {
-    header: string,
-    description?: string,
-    buttons: {
-        id: string,
-        caption: string,
-        title?: string,
-        click?: (event: MouseEvent) => void
-    }[]
-}
+export interface Options extends BaseOptions<Button[]> {}
+export interface OptionsGroups extends BaseOptions<ButtonGroup[]>{}
 
 export interface DocumentOptions {
     title: string
+}
+
+export function print(source: Source, value: any) {
+    console.log(`${source}: ${value}`)
 }
 
 export function prepareDocument(options: DocumentOptions) {
@@ -30,25 +22,79 @@ export function prepareDOM(options: Options) {
             <div>
                 <h1> ${options.header} </h1>
                 ${options.description ? `<h3>${options.description}</h3>` : ''}
-                ${
-                options.buttons.reduce<string[]>(
-                    (htmlButtons, buttonMeta) => {
-                        htmlButtons.push(
-                            `<button id="${buttonMeta.id}" ${
-                                buttonMeta.title ? `title="${buttonMeta.title}"` : ''
-                            } > ${buttonMeta.caption} </button>`)
-
-                        return htmlButtons
-                    },
-                    []
-                ).join('\n')
-            }
+                ${generateButtons(options.buttons)}
             </div>`,
             'text/html'
         ).body.firstChild
     )
 
-    options.buttons.filter(
+    addClickHandlers(options.buttons)
+}
+
+export function prepareDOMGroups(options: OptionsGroups) {
+    const parser = new DOMParser()
+    document.getElementById('container').append(
+        parser.parseFromString(`
+            <div>
+                <h1> ${options.header} </h1>
+                ${options.description ? `<h3>${options.description}</h3>` : ''}
+                <div class="groups">
+                    ${options.buttons.reduce(
+                        (groups, group) => (groups.push(
+                            `<div class="group">
+                                <span class="group-name">${group.name}</span>
+                                <div class="group-buttons">${generateButtons(group.buttons)}</div>
+                            </div>`
+                        ),groups),
+                        []
+                    ).join('')}
+                </div>
+            </div>`,
+            'text/html'
+        ).body.firstChild
+    )
+
+    options.buttons.forEach(group => {
+        addClickHandlers(group.buttons)
+    })
+}
+
+interface BaseOptions<B> {
+    header: string,
+    description?: string,
+    buttons: B
+}
+
+interface Button {
+    id: string,
+    caption: string,
+    title?: string,
+    click?: (event: MouseEvent) => void
+}
+
+interface ButtonGroup {
+    name: string
+    buttons: Button[]
+}
+
+function generateButtons(buttons: Button[]) {
+    return buttons.reduce<string[]>(
+        (htmlButtons, buttonMeta) => {
+            htmlButtons.push(`
+                <button
+                    id="${buttonMeta.id}"
+                    ${buttonMeta.title ? `title="${buttonMeta.title}"` : ''}
+                > ${buttonMeta.caption} </button>
+            `)
+
+            return htmlButtons
+        },
+        []
+    ).join('\n')
+}
+
+function addClickHandlers(buttons: Button[]) {
+    buttons.filter(
         button => button.click instanceof Function
     ).map(
         meta => ({el: document.getElementById(meta.id), meta})
