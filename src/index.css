@@ -34,6 +34,23 @@ button {
     cursor: pointer;
 }
 
+button.merge-left {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-left: 0;
+}
+
+button.merge-right {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin-right: 0;
+}
+
+button.merge-both {
+    border-radius: 0;
+    margin: 0;
+}
+
 .groups {
     display: flex;
     gap: 10px

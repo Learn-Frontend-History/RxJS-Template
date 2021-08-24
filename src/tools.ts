@@ -59,6 +59,12 @@ export function prepareDOMGroups(options: OptionsGroups) {
     })
 }
 
+interface MergeButton {
+    left?: boolean
+    right?: boolean
+    both?: boolean
+}
+
 interface BaseOptions<B> {
     header: string,
     description?: string,
@@ -70,6 +76,7 @@ interface Button {
     caption: string,
     title?: string,
     click?: (event: MouseEvent) => void
+    mergeTo?: MergeButton
 }
 
 interface ButtonGroup {
@@ -77,11 +84,26 @@ interface ButtonGroup {
     buttons: Button[]
 }
 
+function getMergeClass(mergeTo: MergeButton): string {
+    if (mergeTo?.both || mergeTo?.left && mergeTo?.right) {
+        return 'merge-both'
+    }
+
+    if (mergeTo?.left) {
+        return 'merge-left'
+    }
+
+    if (mergeTo?.right) {
+        return 'merge-right'
+    }
+}
+
 function generateButtons(buttons: Button[]) {
     return buttons.reduce<string[]>(
         (htmlButtons, buttonMeta) => {
             htmlButtons.push(`
                 <button
+                    class="${getMergeClass(buttonMeta.mergeTo)}"
                     id="${buttonMeta.id}"
                     ${buttonMeta.title ? `title="${buttonMeta.title}"` : ''}
                 > ${buttonMeta.caption} </button>
