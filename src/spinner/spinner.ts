@@ -2,7 +2,7 @@ import view from './html.js'
 
 export class Spinner {
     static element: HTMLDivElement
-    static show(callback = null) {
+    static show(stopCallback = null) {
         const parser = new DOMParser()
         this.element = parser.parseFromString(
             view,
@@ -17,8 +17,8 @@ export class Spinner {
             'stop'
         ).addEventListener('click', () => {
             Spinner.hide()
-            if (callback instanceof Function) {
-                callback()
+            if (stopCallback instanceof Function) {
+                stopCallback()
             }
         })
 
