@@ -5,6 +5,15 @@ html, body { height: 100%; padding: 0; margin: 0 }
 body {
     display: flex;
 }
+
+#spinner {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: inherit;
+    height: 100%;
+}
+
 #container {
     width: 50%;
     border-right: 1px solid;
