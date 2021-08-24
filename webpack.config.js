@@ -52,7 +52,7 @@ module.exports = {
                 use: [plugins.css.loader, 'css-loader']
             },
             {
-                test: /.ts$/,
+                test: /\.ts$/,
                 use: 'ts-loader'
             }
         ]
