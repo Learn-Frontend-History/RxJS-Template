@@ -15,7 +15,7 @@ body.dark button {
 
 body.dark button.merge-left,
 body.dark button.merge-both {
-    border-left: 1px solid #303133;
+    border-left: 1px solid #4a4c50;
 }
 
 body.dark #container {
