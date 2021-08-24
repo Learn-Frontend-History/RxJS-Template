@@ -13,6 +13,16 @@ body.light button {
     border: 1px solid #303133;
 }
 
+body.light button.merge-left,
+body.light button.merge-both {
+    border-left: none;
+}
+
+
 #container {
     border-color: #4d5156;
+}
+
+body.light .group-name {
+    background: #fff;
 }

@@ -13,6 +13,15 @@ body.dark button {
     border: none;
 }
 
+body.dark button.merge-left,
+body.dark button.merge-both {
+    border-left: 1px solid #303133;
+}
+
 body.dark #container {
     border-color: #bdc1c5;
+}
+
+body.dark .group-name {
+    background: #202123;
 }
