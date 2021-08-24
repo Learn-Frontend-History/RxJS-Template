@@ -4,6 +4,7 @@ const path = require('path');
 const dir = (__path) => path.resolve(__dirname, __path);
 
 const plugins = {
+    copy: require('copy-webpack-plugin'),
     html: require('html-webpack-plugin'),
     css: require('mini-css-extract-plugin'),
 };
@@ -40,7 +41,12 @@ module.exports = {
     },
     plugins: [
         new plugins.html({template: 'index.html'}),
-        new plugins.css()
+        new plugins.css(),
+        new plugins.copy({
+            patterns: [{
+                from: 'favicon.ico'
+            }]
+        })
     ],
     devServer: {
         port: 4201
