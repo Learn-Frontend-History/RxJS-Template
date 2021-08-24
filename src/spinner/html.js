@@ -111,5 +111,6 @@ export default `
             <circle id="observer2" class="observer" cx="600" cy="200" r="5" opacity="0"/>
         </g>
     </svg>
+    <div id="timeExecuting"></div>
 </div>
 `;
