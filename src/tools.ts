@@ -107,12 +107,12 @@ function generateButtons(buttons: Button[]) {
                     id="${buttonMeta.id}"
                     ${buttonMeta.title ? `title="${buttonMeta.title}"` : ''}
                 > ${buttonMeta.caption} </button>
-            `)
+            `.trim())
 
             return htmlButtons
         },
         []
-    ).join('\n')
+    ).join('')
 }
 
 function addClickHandlers(buttons: Button[]) {
