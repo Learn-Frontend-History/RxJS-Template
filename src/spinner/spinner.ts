@@ -1,11 +1,27 @@
 import view from './html.js'
 
 export class Spinner {
-    static timeExecutingInterval: NodeJS.Timer
-    static element: HTMLDivElement
-    static startDate: number
+    private static timeExecutingInterval: NodeJS.Timer
+    private static element: HTMLDivElement
+    private static startDate: number
 
-    static getExecutingTime(): string {
+    public static show(stopCallback = null) {
+        this.startDate = Date.now()
+
+        this.addSpinner()
+
+        this.bindStopClick(stopCallback)
+
+        this.startShowAnimation()
+    }
+
+    public static hide() {
+        this.startHideAnimation()
+
+        this.clear()
+    }
+
+    private static getExecutingTime(): string {
         function lpadZeros(value: number, count: number = 2): string {
             return `${'0'.repeat(count - value.toString(10).length)}${value}`
         }
@@ -21,9 +37,7 @@ export class Spinner {
         }`
     }
 
-    static show(stopCallback = null) {
-        Spinner.startDate = Date.now()
-
+    private static addSpinner() {
         const parser = new DOMParser()
         this.element = parser.parseFromString(
             view,
@@ -33,7 +47,9 @@ export class Spinner {
         document.getElementById(
             'container'
         ).append(this.element)
+    }
 
+    private static bindStopClick(stopCallback) {
         document.getElementById(
             'stop'
         ).addEventListener('click', () => {
@@ -42,7 +58,9 @@ export class Spinner {
                 stopCallback()
             }
         })
+    }
 
+    private static startShowAnimation() {
         const timeExecuting = document.getElementById('timeExecuting')
 
         setTimeout(() => {
@@ -55,8 +73,11 @@ export class Spinner {
         }, 1)
     }
 
-    static hide() {
+    private static startHideAnimation() {
         setTimeout(() => this.element.style.opacity = '0')
+    }
+
+    private static clear() {
         setTimeout(() => {
             document.getElementById(this.element.id)?.remove()
             clearInterval(Spinner.timeExecutingInterval)
