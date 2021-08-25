@@ -1,16 +1,22 @@
 import view from './html.js'
+import {Button} from "../common/interfaces/Button";
+import {ButtonsGenerator} from "../common/Classes/ButtonsGenerator";
 
 export class Spinner {
     private static timeExecutingInterval: NodeJS.Timer
     private static element: HTMLDivElement
     private static startDate: number
 
-    public static show(stopCallback = null) {
+    public static show(stopCallback = null, controls?: Button[]) {
         this.startDate = Date.now()
 
         this.addSpinner()
 
         this.bindStopClick(stopCallback)
+
+        if (controls) {
+            this.addControls(controls)
+        }
 
         this.startShowAnimation()
     }
@@ -82,5 +88,17 @@ export class Spinner {
             document.getElementById(this.element.id)?.remove()
             clearInterval(Spinner.timeExecutingInterval)
         }, 1000)
+    }
+
+    private static addControls(controls: Button[]) {
+        const parser = new DOMParser()
+        document.getElementById('controls').append(
+            parser.parseFromString(`
+                ${ButtonsGenerator.generate(controls)}`,
+                'text/html'
+            ).body.firstChild
+        )
+
+        ButtonsGenerator.bindClicks(controls)
     }
 }

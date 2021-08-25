@@ -3,6 +3,7 @@ import './spinner.css';
 export default `
 <div id="spinner">
     <div>
+        <div id="controls"></div>
         <button id="stop">STOP</button>
     </div>
     <svg

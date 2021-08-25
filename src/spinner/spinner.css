@@ -24,4 +24,5 @@
 
 #spinner>* {
     margin: auto;
+    display: flex;
 }
