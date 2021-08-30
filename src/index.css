@@ -4,7 +4,7 @@
 html, body { height: 100%; padding: 0; margin: 0 }
 body {
     display: grid;
-    grid-template-rows: 100px calc(100% - 100px);
+    grid-template-rows: 100px auto;
     grid-gap: 16px;
     box-sizing: border-box;
 }
@@ -14,7 +14,6 @@ body {
     grid-template-columns: 50% 1px auto;
     grid-auto-flow: column;
     grid-template-rows: 100%;
-    /*height: calc(100% - 140px);*/
 }
 
 #cards-wrapper {
@@ -34,6 +33,7 @@ body {
     padding: 0 20px;
     overflow: auto;
     max-height: 100%;
+    width: 100%;
 }
 
 #log {
