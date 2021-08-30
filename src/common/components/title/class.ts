@@ -8,7 +8,7 @@ export default class Title extends Component {
 
     show(text: string) {
         this.component.innerText = text
-        this.component.style.display = 'block-inline'
+        this.component.style.display = 'inline-block'
     }
 
     hide() {
