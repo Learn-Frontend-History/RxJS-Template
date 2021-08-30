@@ -28,7 +28,6 @@ module.exports = {
     context: dir('src'),
     entry: {
         main: './index.ts',
-        log: './htmlLog/index.js',
         ...getRxJSEntry()
     },
     output: {
@@ -37,7 +36,10 @@ module.exports = {
         clean: true
     },
     resolve: {
-        extensions: getResolveExtensions().map(ext => `.${ext}`)
+        extensions: getResolveExtensions().map(ext => `.${ext}`),
+        alias: {
+            '@': path.resolve(__dirname, 'src/common/'),
+        }
     },
     plugins: [
         new plugins.html({template: 'index.html'}),

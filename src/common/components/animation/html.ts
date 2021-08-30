@@ -1,14 +1,10 @@
-import './spinner.css';
+import './styles.css';
 
 export default `
-<div id="spinner">
-    <div>
-        <div id="controls"></div>
-        <button id="stop">STOP</button>
-    </div>
     <svg
+            style="display: none"
             xmlns="http://www.w3.org/2000/svg"
-            width="800" height="400"
+            viewBox="-4 0 800 400"
     >
         <style>
             .value {
@@ -112,6 +108,4 @@ export default `
             <circle id="observer2" class="observer" cx="600" cy="200" r="5" opacity="0"/>
         </g>
     </svg>
-    <div id="timeExecuting"></div>
-</div>
-`;
+`.trim();

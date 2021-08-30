@@ -3,77 +3,39 @@
 
 html, body { height: 100%; padding: 0; margin: 0 }
 body {
+    display: grid;
+    grid-template-rows: 100px calc(100% - 100px);
+    grid-gap: 16px;
+    box-sizing: border-box;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 50% 1px auto;
+    grid-auto-flow: column;
+    grid-template-rows: 100%;
+    /*height: calc(100% - 140px);*/
+}
+
+#cards-wrapper {
     display: flex;
+    position: relative;
+    height: inherit;
 }
 
-#spinner {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: inherit;
-    height: 100%;
+#separator {
+    border: 1px solid;
 }
 
-#container {
-    width: 50%;
-    border-right: 1px solid;
-    padding: 10px;
+#cards {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 16px;
+    padding: 0 20px;
     overflow: auto;
+    max-height: 100%;
 }
 
-#htmlLogDisplay {
-    width: 50%;
-    margin-left: auto;
-    padding: 10px;
-    overflow: auto;
-}
-
-button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 2px;
-}
-
-button.merge-left {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    margin-left: 0;
-}
-
-button.merge-right {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    margin-right: 0;
-}
-
-button.merge-both {
-    border-radius: 0;
-    margin: 0;
-}
-
-.groups {
-    display: flex;
-    gap: 10px
-}
-
-.group {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    display: inline-block;
-    flex-flow: column;
-    justify-content: center;
-    height: 30px;
-}
-
-.group-name {
-        position: relative;
-        top: -20px;
-        padding: 0 5px;
-}
-
-.group-buttons {
-        position: relative;
-        top: -15px;
+#log {
+    padding: 0 20px;
 }

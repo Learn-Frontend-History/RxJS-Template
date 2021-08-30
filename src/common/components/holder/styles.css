@@ -1,0 +1,24 @@
+.holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #555;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .5s;
+
+    display: none;
+    grid-template-rows: 100px 100px auto 200px;
+}
+
+.holder > * {
+    margin: auto;
+}
+
+.animation {
+    margin: 0;
+    display: flex;
+    padding: 16px;
+}

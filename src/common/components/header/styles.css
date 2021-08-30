@@ -1,0 +1,32 @@
+.main-header {
+    display: flex;
+    height: 100%;
+    padding: 10px;
+    background-color: #381f2f;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+}
+
+.info img {
+    height: 100%;
+    width: auto;
+}
+
+.tools {
+    display: flex;
+    margin-left: auto;
+    height: 3em;
+}
+
+h1 {
+    line-height: 3em;
+    font-size: 3em;
+    margin: 0;
+}

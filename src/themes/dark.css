@@ -3,7 +3,8 @@ body.dark {
     color: #bdc1c5;
 }
 
-body.dark h1 {
+body.dark h1,
+body.dark h2 {
     color: #e8eaec;
 }
 
@@ -18,10 +19,10 @@ body.dark button.merge-both {
     border-left: 1px solid #4a4c50;
 }
 
-body.dark #container {
+body.dark #separator {
     border-color: #bdc1c5;
 }
 
-body.dark .group-name {
-    background: #202123;
+body.dark .group:before {
+    background-color: #202123;
 }

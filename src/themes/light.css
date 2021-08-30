@@ -3,7 +3,8 @@ body.light {
     color: #4d5156;
 }
 
-body.light h1 {
+body.light h1,
+body.light h2 {
     color: #202123;
 }
 
@@ -13,16 +14,10 @@ body.light button {
     border: 1px solid #303133;
 }
 
-body.light button.merge-left,
-body.light button.merge-both {
-    border-left: none;
-}
-
-
-#container {
+body.light #separator {
     border-color: #4d5156;
 }
 
-body.light .group-name {
+body.light .group:before {
     background: #fff;
 }
