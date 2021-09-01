@@ -9,7 +9,6 @@ export default class Button extends Component {
         this.component.addEventListener(
             'click',
             event => {
-                event.stopPropagation()
                 click(event)
             }
         )

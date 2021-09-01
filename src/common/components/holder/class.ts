@@ -84,11 +84,6 @@ export default class Holder extends Component {
         const animation = new Animation()
         this.child('animation').append(animation.component)
 
-        this.component.addEventListener('click', event => {
-            event.stopPropagation()
-            this.hide()
-        })
-
         return animation
     }
 
