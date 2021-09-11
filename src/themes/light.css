@@ -11,13 +11,23 @@ body.light h2 {
 body.light button {
     background-color: #fff;
     color: #303133;
-    border: 1px solid #303133;
+    border: unset;
+    box-shadow: inset 0 0 0 1px #303133;
+    box-sizing: border-box;
 }
 
 body.light #separator {
-    border-color: #4d5156;
+    border-color: #ddd;
 }
 
 body.light .group:before {
     background: #fff;
+}
+
+body.light .main-header {
+    background-color: #ddd;
+}
+
+body.light .card {
+    box-shadow: inset 0 0 0 1px #ddd;
 }

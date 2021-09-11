@@ -1,11 +1,21 @@
 @import "themes/dark.css";
 @import "themes/light.css";
 
+body.transition,
+body.transition div,
+body.transition button {
+    transition: background-color .2s, border .2s;
+}
+
+body.transition p,
+body.transition span {
+    transition: color .2s;
+}
+
 html, body { height: 100%; padding: 0; margin: 0 }
 body {
     display: grid;
-    grid-template-rows: 100px calc(100vh - 100px - 16px);
-    grid-gap: 16px;
+    grid-template-rows: 100px calc(100vh - 100px);
     box-sizing: border-box;
 }
 
@@ -29,13 +39,14 @@ body {
 #cards {
     display: grid;
     grid-template-columns: auto auto;
+    grid-auto-rows: max-content;
     gap: 16px;
-    padding: 0 20px;
+    padding: 20px;
     overflow: auto;
     max-height: 100%;
     width: 100%;
 }
 
 #log {
-    padding: 0 20px;
+    padding: 20px;
 }

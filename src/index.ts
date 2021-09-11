@@ -11,3 +11,5 @@ document.getElementById('header').append(header.component)
 document.getElementById('log').append(_log.component)
 
 document.getElementById('cards-wrapper').append(holder.component)
+
+setTimeout(() => document.body.classList.add('transition'), 1)

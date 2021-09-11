@@ -20,9 +20,17 @@ body.dark button.merge-both {
 }
 
 body.dark #separator {
-    border-color: #bdc1c5;
+    border-color: #381f2f;
 }
 
 body.dark .group:before {
     background-color: #202123;
+}
+
+body.dark .main-header {
+    background-color: #381f2f;
+}
+
+body.dark .card {
+    background-color: #28292b;
 }

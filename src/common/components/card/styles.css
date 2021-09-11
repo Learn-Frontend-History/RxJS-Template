@@ -1,7 +1,6 @@
 .card {
     display: inline-flex;
     flex-flow: column;
-    background-color: #28292b;
     border-radius: 8px;
     padding: 10px;
 }

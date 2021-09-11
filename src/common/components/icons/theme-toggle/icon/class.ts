@@ -7,7 +7,10 @@ export default class ThemeToggle extends Icon {
     constructor() {
         super(
             html,
-            () => document.body.className = localStorage.getItem('theme'),
+            () => {
+                document.body.classList.toggle('light')
+                document.body.classList.toggle('dark')
+            },
             component => component.append(
                 localStorage.getItem('theme') === 'light'
                     ? (new ThemeToggleDark()).component
