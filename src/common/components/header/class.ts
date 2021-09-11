@@ -1,8 +1,8 @@
 import html from './html'
 import {Component} from "@/classes/Component";
 
-import ThemeToggle from "@/components/theme-toggle/class";
-import ClearLog from "@/components/clear-log/class";
+import ThemeToggle from "@/components/icons/theme-toggle/icon/class";
+import ClearLog from "@/components/icons/clear-log/icon/class";
 
 export default class Button extends Component {
     constructor(title: string) {
