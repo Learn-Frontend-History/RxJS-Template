@@ -1,4 +1,4 @@
-const svg = require('./clear-log.svg')
+const svg = require('./icon.svg')
 
 import './styles.css';
 
