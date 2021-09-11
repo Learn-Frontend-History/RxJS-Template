@@ -56,12 +56,16 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /.css$/,
+                test: /\.css$/,
                 use: [plugins.css.loader, 'css-loader']
             },
             {
                 test: /\.ts$/,
                 use: 'ts-loader'
+            },
+            {
+                test: /\.svg$/,
+                use: 'svg-inline-loader'
             }
         ]
     },

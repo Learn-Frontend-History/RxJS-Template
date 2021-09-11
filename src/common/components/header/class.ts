@@ -1,8 +1,8 @@
 import html from './html'
 import {Component} from "@/classes/Component";
 
-import clearLogButton from '../../../components/buttons/clear-log'
 import ThemeToggle from "@/components/theme-toggle/class";
+import ClearLog from "@/components/clear-log/class";
 
 export default class Button extends Component {
     constructor(title: string) {
@@ -11,8 +11,8 @@ export default class Button extends Component {
         this.child('title').innerText = title
 
         this.child('tools').append(
+            (new ClearLog()).component,
             (new ThemeToggle()).component,
-            clearLogButton.component
         )
     }
 }
