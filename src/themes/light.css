@@ -35,3 +35,8 @@ body.light .card {
 body.light .holder {
     background-color: #fff;
 }
+
+/*scroll*/
+body.light ::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+}

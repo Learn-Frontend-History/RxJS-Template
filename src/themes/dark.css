@@ -38,3 +38,8 @@ body.dark .card {
 body.dark .holder {
     background-color: #28292b;
 }
+
+/*scroll*/
+body.dark ::-webkit-scrollbar-thumb {
+    background-color: #28292b;
+}
