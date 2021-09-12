@@ -49,4 +49,5 @@ body {
 
 #log {
     padding: 20px;
+    overflow: auto;
 }
