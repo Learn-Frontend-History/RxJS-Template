@@ -3,17 +3,11 @@ import {Component} from "@/classes/Component";
 import Button from "@/components/button/class";
 
 export default class ButtonGroup extends Component {
-    constructor() {
+    constructor(controls: Button[] = []) {
         super(html);
-    }
 
-    show(controls: Button[] = []) {
         controls.forEach(
             control => this.component.append(control.component)
         )
-    }
-
-    hide() {
-        this.component.innerHTML = ''
     }
 }
