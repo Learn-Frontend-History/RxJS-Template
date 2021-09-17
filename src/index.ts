@@ -1,4 +1,4 @@
-import './index.css'
+import './index.sass'
 import header from "./components/header";
 import _log from './components/log'
 

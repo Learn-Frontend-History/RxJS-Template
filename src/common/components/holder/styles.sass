@@ -1,0 +1,21 @@
+.holder
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  z-index: 1
+  opacity: 0
+  display: none
+  grid-template-rows: 100px 100px auto 200px
+
+  &.in
+    opacity: 100%
+
+  > *
+    margin: auto
+
+.animation
+  margin: 0
+  display: flex
+  padding: 16px

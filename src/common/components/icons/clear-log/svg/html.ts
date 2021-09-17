@@ -1,5 +1,5 @@
 const svg = require('./icon.svg')
 
-import './styles.css';
+import './styles.sass';
 
 export default svg;
