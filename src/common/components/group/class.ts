@@ -6,7 +6,7 @@ export default class Group extends Component {
         super(html);
 
         controls.forEach(
-            control => this.component.append(control.component)
+            control => this.child('border').append(control.component)
         )
     }
 }
