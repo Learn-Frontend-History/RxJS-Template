@@ -47,13 +47,11 @@ export default class Holder extends Component {
             this.executionTime.start()
         }
 
-        setTimeout(() => {
-            this.component.style.opacity = '100%'
-        })
+        setTimeout(() => this.component.classList.toggle('in'), 1)
     }
 
     hide() {
-        this.component.style.opacity = '0%'
+        this.component.classList.toggle('in')
 
         this.title.hide()
         this.controls.hide()

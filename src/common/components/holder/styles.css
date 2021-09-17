@@ -6,10 +6,12 @@
     width: 100%;
     z-index: 1;
     opacity: 0;
-    transition: opacity .5s;
-
     display: none;
     grid-template-rows: 100px 100px auto 200px;
+}
+
+.holder.in {
+    opacity: 100%;
 }
 
 .holder > * {
