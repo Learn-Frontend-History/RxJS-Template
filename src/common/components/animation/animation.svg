@@ -2,6 +2,7 @@
         style="display: none"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-4 0 800 400"
+        stroke="black"
 >
     <g id="arrow">
         <line x1="10" y1="200" x2="785" y2="200"/>
@@ -10,14 +11,14 @@
         <path d="M 790 200 l -20 -8 10 8 -10 8 Z"/>
     </g>
 
-    <g id="observer1">
+    <g>
         <circle cx="400" cy="350" r="5"/>
         <circle cx="400" cy="350" r="8" fill="none"/>
 
         <line x1="400" y1="200" x2="400" y2="350"/>
     </g>
 
-    <g id="observer2">
+    <g>
         <circle cx="600" cy="50" r="5"/>
         <circle cx="600" cy="50" r="8" fill="none"/>
 
