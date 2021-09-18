@@ -1,3 +1,54 @@
 svg
   width: 100%
   height: auto
+
+  .value
+    animation-name: value
+    animation-duration: 2s
+    animation-iteration-count: infinite
+    animation-timing-function: linear
+
+  #value2
+    animation-delay: .5s
+
+  .observer
+    animation-timing-function: cubic-bezier(.89, .89, .34, .99)
+    animation-iteration-count: infinite
+
+  #observer1
+    animation-name: observer1
+    animation-delay: 1s
+    animation-duration: 2s
+
+  #observer2
+    animation-name: observer2
+    animation-delay: 2s
+    animation-duration: 2s
+
+  @keyframes value
+    from
+      cx: 10px
+    to
+      cx: 780px
+
+  @keyframes observer1
+    0%
+      cy: 200px
+      opacity: 0
+    5%
+      opacity: 1
+    25%
+      cy: 350px
+    100%
+      cy: 350px
+
+  @keyframes observer2
+    0%
+      cy: 200px
+      opacity: 0
+    5%
+      opacity: 1
+    25%
+      cy: 50px
+    100%
+      cy: 50px
