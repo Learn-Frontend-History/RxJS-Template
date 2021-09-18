@@ -6,8 +6,10 @@ export default class Group extends Component {
         super(html);
 
         this.child('caption').innerText = caption
+        this.child('caption').setAttribute('title', caption)
+
         controls.forEach(
-            control => this.child('border').append(control.component)
+            control => this.child('content').append(control.component)
         )
     }
 }
