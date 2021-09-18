@@ -7,7 +7,14 @@ import Title from "@/components/title/class";
 import Controls from "@/components/controls/class";
 import Button from "@/components/button/class";
 
-export default class Holder extends Component {
+export interface ShowOptions {
+    title?: string,
+    controls?: Button[],
+    showAnimation?: boolean,
+    startTimer?: boolean
+}
+
+export class Holder extends Component {
     private title: Title
     private controls: Controls
     private animation: Animation
@@ -25,9 +32,7 @@ export default class Holder extends Component {
     show(
         {
             title = '', controls = [], showAnimation = true, startTimer = true
-        }: {
-            title?: string, controls?: Button[], showAnimation?: boolean, startTimer?: boolean
-        } = {}
+        }: ShowOptions = {}
     ) {
         this.component.style.display = 'grid'
 
