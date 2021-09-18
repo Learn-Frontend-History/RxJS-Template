@@ -6,7 +6,8 @@
     "start": "webpack serve"
   },
   "dependencies": {
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.1",

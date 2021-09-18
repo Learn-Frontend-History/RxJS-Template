@@ -1,5 +1,6 @@
 import html from './html'
 import {Component} from "@/classes/Component";
+import * as moment from "moment";
 
 export default class ExecutionTime extends Component {
     private startTimestamp: number
@@ -25,18 +26,6 @@ export default class ExecutionTime extends Component {
     }
 
     private getExecutingTime(): string {
-        const spend = new Date(Date.now() - this.startTimestamp)
-
-        return `${
-            this.lpadZeros(spend.getMinutes())
-        }:${
-            this.lpadZeros(spend.getSeconds())
-        } ${
-            this.lpadZeros(spend.getMilliseconds(), 3)
-        }`
+        return moment(Date.now() - this.startTimestamp).format('mm:ss SSS')
     }
-
-    private lpadZeros = (
-        value: number, count: number = 2
-    ): string => `${'0'.repeat(count - value.toString(10).length)}${value}`;
 }

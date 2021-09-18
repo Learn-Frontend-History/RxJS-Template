@@ -1,5 +1,6 @@
 import html from './html'
 import {Component} from "@/classes/Component";
+import * as moment from "moment";
 
 export default class LogRow extends Component {
     constructor(message: string) {
@@ -11,6 +12,6 @@ export default class LogRow extends Component {
 
         this.component.getElementsByClassName(
             'timestamp'
-        )[0].innerHTML = (new Date()).toISOString()
+        )[0].innerHTML = moment().format('HH:mm:ss SSS')
     }
 }
