@@ -5,7 +5,7 @@ export default class Button extends Component {
     constructor(caption: string, click: (event: MouseEvent) => void) {
         super(html);
 
-        this.component.innerText = caption
+        this.child('caption').innerText = caption
         this.component.addEventListener(
             'click',
             event => {

@@ -1,15 +1,8 @@
-@import "themes/dark"
-@import "themes/light"
+@import "themes/dark/styles"
+@import "themes/light/styles"
 
-body.transition
-  transition: background-color .2s, border .2s, opacity .3s
-
-  div, button, ::-webkit-scrollbar-thumb
-    transition: background-color .2s, border .2s, opacity .3s
-
-  p, span
-    transition: color .2s
-
+$transition-color: .2s
+$transition-opacity: .3s
 
 html, body
   height: 100%
@@ -22,6 +15,14 @@ body
   grid-template-rows: 100px calc(100vh - 100px)
   box-sizing: border-box
 
+  &.transition
+    transition: background-color $transition-color, border $transition-color, box-shadow $transition-color, opacity $transition-opacity
+
+    div, button
+      transition: background-color $transition-color, border $transition-color, box-shadow $transition-color, opacity $transition-opacity
+
+    p, span, h1, h2
+      transition: color $transition-color
 
 #content
   display: grid
@@ -35,10 +36,8 @@ body
   position: relative
   height: inherit
 
-
 #separator
   border: 1px solid
-
 
 #cards
   display: grid
@@ -50,19 +49,15 @@ body
   max-height: 100%
   width: 100%
 
-
 #log
   padding: 20px
   overflow: auto
 
-
 ::-webkit-scrollbar
   width: 16px
 
-
 ::-webkit-scrollbar-track
   background-color: unset
-
 
 ::-webkit-scrollbar-thumb
   border: 4px solid rgba(0, 0, 0, 0)

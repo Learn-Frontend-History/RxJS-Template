@@ -1,0 +1,25 @@
+$color-light1: #fff
+$color-light2: #ddd
+
+$color-dark1: #4d5156
+$color-dark2: #202123
+
+body.light
+  background: $color-light1
+  color: $color-dark1
+
+  h1, h2
+    color: $color-dark2
+
+  ::-webkit-scrollbar-thumb
+    background-color: $color-light2
+
+  @import './button'
+  @import './button-group'
+  @import './card'
+  @import './group'
+  @import './holder'
+  @import './main-header'
+  @import './separator'
+  @import './svg'
+
