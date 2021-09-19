@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 
 import ThemeToggle from "@/components/icons/theme-toggle/icon/class";
 import ClearLog from "@/components/icons/clear-log/icon/class";

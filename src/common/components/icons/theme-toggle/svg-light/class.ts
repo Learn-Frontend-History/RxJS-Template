@@ -1,5 +1,5 @@
 import view from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 
 type Theme = 'light' | 'dark'
 

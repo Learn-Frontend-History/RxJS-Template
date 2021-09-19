@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 
 export default class ClearLogIcon extends Component {
     constructor() {

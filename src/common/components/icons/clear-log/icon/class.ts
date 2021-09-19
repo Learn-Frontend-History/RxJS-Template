@@ -1,6 +1,6 @@
 import html from './html'
 import ClearLogIcon from "@/components/icons/clear-log/svg/class";
-import Icon from "@/classes/Icon";
+import Icon from "@/classes/icon";
 
 export default class ClearLog extends Icon {
     constructor() {

@@ -1,7 +1,7 @@
 import html from './html'
 import ThemeToggleDark from "@/components/icons/theme-toggle/svg-dark/class";
 import ThemeToggleLight from "@/components/icons/theme-toggle/svg-light/class";
-import Icon from "@/classes/Icon";
+import Icon from "@/classes/icon";
 
 export default class ThemeToggle extends Icon {
     constructor() {

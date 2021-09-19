@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 import Button from "@/components/button/class";
 
 export interface ButtonGroupPayload {

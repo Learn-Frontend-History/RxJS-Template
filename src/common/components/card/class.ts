@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 import ButtonGroup from "@/components/button-group/class";
 import Group from "@/components/group/class";
 import Button from "@/components/button/class";

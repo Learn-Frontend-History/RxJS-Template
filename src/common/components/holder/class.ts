@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 
 import Animation from '../animation/class'
 import ExecutionTime from "@/components/execution-time/class";

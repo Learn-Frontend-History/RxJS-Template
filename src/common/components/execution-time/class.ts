@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 import * as moment from "moment";
 
 export default class ExecutionTime extends Component {

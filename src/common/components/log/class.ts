@@ -1,5 +1,5 @@
 import html from './html'
-import {Component} from "@/classes/Component";
+import {Component} from "@/classes/component";
 import LogRow from "@/components/log/row/class";
 
 export default class Log extends Component {
