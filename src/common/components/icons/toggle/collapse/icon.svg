@@ -1,0 +1,8 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 400 400"
+    stroke="black"
+>
+    <line x1="20" y1="200" x2="380" y2="200" stroke-width="60px"/>
+    <line class="expand-rotate" x1="200" y1="20" x2="200" y2="380" stroke-width="60px"/>
+</svg>

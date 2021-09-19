@@ -1,0 +1,21 @@
+.rows-group
+  .header
+    display: flex
+    height: 30px
+    gap: 15px
+
+    .collapse
+      display: flex
+      padding: 6px
+
+  .caption-wrapper
+    display: flex
+    align-items: center
+
+  .rows
+    transition: max-height .4s
+    overflow: hidden
+    max-height: 10000px
+
+    &.collapse
+      max-height: 0
