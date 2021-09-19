@@ -1,8 +1,11 @@
 import html from './html'
 import {Component} from "@/classes/Component";
 
+export interface GroupPayload {
+    controls: Component[], caption: string
+}
 export default class Group extends Component {
-    constructor(controls: Component[] = [], caption: string = '') {
+    constructor({controls, caption = ''}: GroupPayload) {
         super(html);
 
         this.child('caption').innerText = caption

@@ -4,7 +4,7 @@ import {Component} from "@/classes/Component";
 import ThemeToggle from "@/components/icons/theme-toggle/icon/class";
 import ClearLog from "@/components/icons/clear-log/icon/class";
 
-export default class Button extends Component {
+export default class Header extends Component {
     constructor(title: string) {
         super(html);
 
