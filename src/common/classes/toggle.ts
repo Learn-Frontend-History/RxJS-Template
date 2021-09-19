@@ -1,15 +1,17 @@
 import {Component} from "@/classes/component";
 
 export default class Toggle extends Component {
-    private flag = false
+    private flag
 
     constructor(
         html: any,
         private stateTrue: HTMLElement,
         private stateFalse: HTMLElement,
-        toggle: (flag: boolean) => void
+        toggle: (flag: boolean) => void,
+        flagState = false
     ) {
         super(html);
+        this.flag = flagState
         this.component.append(this.stateFalse)
 
         this.component.addEventListener(

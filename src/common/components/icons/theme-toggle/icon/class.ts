@@ -1,21 +1,21 @@
 import html from './html'
 import ThemeToggleDark from "@/components/icons/theme-toggle/svg-dark/class";
 import ThemeToggleLight from "@/components/icons/theme-toggle/svg-light/class";
-import Icon from "@/classes/icon";
+import Toggle from "@/classes/toggle";
 
-export default class ThemeToggle extends Icon {
+export default class ThemeToggle extends Toggle {
     constructor() {
         super(
             html,
-            () => {
+            (new ThemeToggleLight()).component,
+            (new ThemeToggleDark()).component,
+            flag => {
                 document.body.classList.toggle('light')
                 document.body.classList.toggle('dark')
+
+                localStorage.setItem('theme', flag ? 'light': 'dark')
             },
-            component => component.append(
-                localStorage.getItem('theme') === 'light'
-                    ? (new ThemeToggleDark()).component
-                    : (new ThemeToggleLight()).component
-            )
+            localStorage.getItem('theme') === 'light'
         );
     }
 }
