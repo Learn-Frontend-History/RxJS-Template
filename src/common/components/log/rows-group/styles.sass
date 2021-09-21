@@ -1,3 +1,5 @@
+$color-main: #381F2FFF
+
 .rows-group
   .header
     display: flex
@@ -7,15 +9,19 @@
     .collapse
       display: flex
       padding: 6px
+      width: 30px
+      height: 30px
+      box-sizing: border-box
 
   .caption-wrapper
     display: flex
     align-items: center
 
   .rows
-    transition: max-height .4s
-    overflow: hidden
-    max-height: 10000px
+    .row
+      transition: height .4s, padding .4s
 
     &.collapse
-      max-height: 0
+      .row
+        height: 0
+        padding: 0
