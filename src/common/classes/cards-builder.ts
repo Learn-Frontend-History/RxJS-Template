@@ -5,6 +5,12 @@ import Group, {GroupPayload} from "@/components/group/class";
 import ButtonGroup, {ButtonGroupPayload} from "@/components/button-group/class";
 import {SubscriptionHolder} from "../../components/subscription-holder";
 import {Observer} from "rxjs";
+import {Component} from "@/classes/component";
+import CardEx from "@/components/cardEx/class";
+import CardHeader from "@/components/cardEx/components/header/class";
+import CardParagraph from "@/components/cardEx/components/paragraph/class";
+import CardSubHeader from "@/components/cardEx/components/sub-header/class";
+import CardCode from "@/components/cardEx/components/code/class";
 
 export class CardsBuilder {
     private container: HTMLElement
@@ -37,6 +43,14 @@ export class CardsBuilder {
         return this
     }
 
+    addCardEx(content: Component[]) {
+        this.container.append(
+            new CardEx(content).component
+        )
+
+        return this
+    }
+
     button(payload: ButtonPayload): Button {
         return new Button(payload)
     }
@@ -47,6 +61,22 @@ export class CardsBuilder {
 
     group(payload: GroupPayload): Group {
         return new Group(payload)
+    }
+
+    cardHeader(caption: string) {
+        return new CardHeader(caption)
+    }
+
+    cardSubHeader(caption: string) {
+        return new CardSubHeader(caption)
+    }
+
+    cardParagraph(caption: string) {
+        return new CardParagraph(caption)
+    }
+
+    cardCode(caption: string) {
+        return new CardCode(caption)
     }
 
 }
