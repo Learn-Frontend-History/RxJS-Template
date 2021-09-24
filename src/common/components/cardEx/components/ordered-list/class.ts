@@ -1,6 +1,6 @@
 import html from './html'
 import {Component} from "@/classes/component";
-import ListItem from "@/components/cardEx/components/ordered-list/components/class";
+import ListItem from "@/components/cardEx/components/ordered-list/components/list-item/class";
 
 export default class CardOrderedList extends Component {
     constructor(items: string[]) {
