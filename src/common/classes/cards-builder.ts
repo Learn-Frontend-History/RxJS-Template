@@ -11,6 +11,7 @@ import CardHeader from "@/components/cardEx/components/header/class";
 import CardParagraph from "@/components/cardEx/components/paragraph/class";
 import CardSubHeader from "@/components/cardEx/components/sub-header/class";
 import CardCode from "@/components/cardEx/components/code/class";
+import CardOrderedList from "@/components/cardEx/components/ordered-list/class";
 
 export class CardsBuilder {
     private container: HTMLElement
@@ -79,4 +80,7 @@ export class CardsBuilder {
         return new CardCode(caption)
     }
 
+    cardOrderedList(items: string[]) {
+        return new CardOrderedList(items)
+    }
 }
