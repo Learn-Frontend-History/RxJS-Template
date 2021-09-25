@@ -1,3 +1,5 @@
+$color-main: #381f2f
+
 $color-dark1: #202123
 $color-dark4: #28292b
 
@@ -7,6 +9,10 @@ $color-light2: #e8eaec
 body.dark
   background-color: $color-dark1
   color: $color-light1
+
+  #header
+    box-shadow: 0 0 10px 4px $color-main
+    z-index: 1
 
   h1, h2
     color: $color-light2
