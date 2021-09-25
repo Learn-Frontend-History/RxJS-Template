@@ -1,6 +1,9 @@
 export class Component {
     component: HTMLElement
-    constructor(view) {
+    constructor(
+        view: string,
+        protected context: {} = null
+    ) {
         const parser = new DOMParser()
         this.component = parser.parseFromString(
             view,
@@ -10,5 +13,10 @@ export class Component {
 
     protected child(className: string): HTMLElement {
         return this.component.getElementsByClassName(className)?.[0] as HTMLElement
+    }
+
+    protected append(target: HTMLElement, control: Component) {
+        control.context = this.context
+        this.component.append(control.component)
     }
 }

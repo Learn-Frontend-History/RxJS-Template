@@ -15,6 +15,8 @@ import CardOrderedList from "@/components/cardEx/components/ordered-list/class";
 
 export class CardsBuilder {
     private container: HTMLElement
+    private context: {}
+
     public holder: SubscriptionHolder
 
     get observer(): Observer<any> {
@@ -36,6 +38,12 @@ export class CardsBuilder {
         this.holder = new SubscriptionHolder(holder)
     }
 
+    setContext(context: {}): null {
+        this.context = context
+
+        return null
+    }
+
     addCard(payload: CardPayload): CardsBuilder {
         this.container.append(
             new Card(payload).component
@@ -44,16 +52,20 @@ export class CardsBuilder {
         return this
     }
 
-    addCardEx(content: Component[]) {
+    addCardEx(content: (Component | void)[]) {
+        const components = content.filter(
+            item => item instanceof Component
+        ) as Component[]
+
         this.container.append(
-            new CardEx(content).component
+            new CardEx(components).component
         )
 
         return this
     }
 
     button(payload: ButtonPayload): Button {
-        return new Button(payload)
+        return new Button(payload, this.context)
     }
 
     buttonsGroup(payload: ButtonGroupPayload) {
