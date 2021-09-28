@@ -19,8 +19,6 @@ function getRxJSEntry() {
         {cwd: 'src'}
     ).map(file => `./${file}`)
 
-    console.log(rxjs)
-
     return rxjs.length ? { rxjs } : {}
 }
 

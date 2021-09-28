@@ -5,7 +5,6 @@
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
-      // '@': path.resolve(__dirname, 'src/common'),
       "@/*": ["src/common/*"]
     }
   },
