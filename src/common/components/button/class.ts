@@ -7,15 +7,7 @@ export interface ButtonPayload {
 }
 
 export default class Button extends Component {
-    constructor({caption, click}: ButtonPayload, context: {} = null) {
-        super(html, context);
-
-        this.child('caption').innerText = caption
-        this.component.addEventListener(
-            'click',
-            event => {
-                click(event, context)
-            }
-        )
+    constructor() {
+        super(html);
     }
 }

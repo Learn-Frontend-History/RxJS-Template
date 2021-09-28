@@ -1,9 +1,14 @@
+// TODO implement interface to append child, set content, set attributes
 export class Component {
     component: HTMLElement
     constructor(
-        view: string,
-        protected context: {} = null
+        view: string | HTMLElement,
     ) {
+        if (view instanceof HTMLElement) {
+            this.component = view
+            return
+        }
+
         const parser = new DOMParser()
         this.component = parser.parseFromString(
             view,
@@ -15,8 +20,19 @@ export class Component {
         return this.component.getElementsByClassName(className)?.[0] as HTMLElement
     }
 
-    protected append(target: HTMLElement, control: Component) {
-        control.context = this.context
+    public append(control: Component) {
         this.component.append(control.component)
+    }
+
+    public on(type: string, listener: (...ars) => void) {
+        this.component.addEventListener(type, listener)
+    }
+
+    public set(name: string, value: any) {
+        this.component.setAttribute(name, value)
+    }
+
+    public setContent(content: string) {
+        this.component.innerText = content
     }
 }

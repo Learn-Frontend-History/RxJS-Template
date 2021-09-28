@@ -28,14 +28,9 @@ export class SubscriptionHolder {
             options.controls = []
         }
 
-        options.controls.push(
-            new Button({
-                caption: 'STOP',
-                click: () => {
-                    this.hide()
-                }
-            })
-        )
+        const stopButton = new Button()
+        stopButton.setContent('СТОП')
+        stopButton.on('click', () => this.hide())
 
         return options
     }

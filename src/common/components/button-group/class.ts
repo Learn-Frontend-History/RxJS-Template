@@ -6,11 +6,7 @@ export interface ButtonGroupPayload {
     controls: Button[]
 }
 export default class ButtonGroup extends Component {
-    constructor({ controls }: ButtonGroupPayload) {
+    constructor() {
         super(html);
-
-        controls.forEach(
-            control => this.component.append(control.component)
-        )
     }
 }

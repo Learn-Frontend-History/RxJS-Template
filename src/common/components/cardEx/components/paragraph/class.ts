@@ -4,13 +4,15 @@ import ParagraphAccent from "@/components/cardEx/components/paragraph/components
 import ParagraphText from "@/components/cardEx/components/paragraph/components/text/class";
 
 export default class CardParagraph extends Component {
-    constructor(caption: string) {
+    constructor() {
         super(html);
+    }
 
-        const captionParts = caption.split('`')
+    setContent(content: string) {
+        const contentParts = content.split('`')
 
         let accent = false
-        captionParts.forEach(
+        contentParts.forEach(
             part => {
                 if (part) {
                     this.component.append(

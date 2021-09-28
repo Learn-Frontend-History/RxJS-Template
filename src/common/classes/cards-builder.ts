@@ -65,34 +65,57 @@ export class CardsBuilder {
     }
 
     button(payload: ButtonPayload): Button {
-        return new Button(payload, this.context)
+        const button = new Button()
+
+        button.setContent(payload.caption)
+        button.on('click', payload.click)
+
+        return button
     }
 
     buttonsGroup(payload: ButtonGroupPayload) {
-        return new ButtonGroup(payload)
+        const buttonGroup = new ButtonGroup()
+
+        payload.controls.forEach(buttonGroup.append.bind(buttonGroup))
+        return buttonGroup
     }
 
     group(payload: GroupPayload): Group {
-        return new Group(payload)
+        const group = new Group()
+        group.set('caption', payload.caption)
+        payload.controls.forEach(group.append.bind(group))
+
+        return group
     }
 
     cardHeader(caption: string) {
-        return new CardHeader(caption)
+        const cardHeader = new CardHeader()
+        cardHeader.setContent(caption)
+
+        return cardHeader
     }
 
     cardSubHeader(caption: string) {
-        return new CardSubHeader(caption)
+        const cardSubHeader = new CardSubHeader()
+        cardSubHeader.setContent(caption)
+        return cardSubHeader
     }
 
     cardParagraph(caption: string) {
-        return new CardParagraph(caption)
+        const cardParagraph = new CardParagraph()
+        cardParagraph.setContent(caption)
+        return cardParagraph
     }
 
     cardCode(caption: string) {
-        return new CardCode(caption)
+        const cardCode = new CardCode()
+        cardCode.setContent(caption)
+        return cardCode
     }
 
-    cardOrderedList(items: string[]) {
-        return new CardOrderedList(items)
+    cardOrderedList(caption: string) {
+        const cardOrderedList = new CardOrderedList()
+        cardOrderedList.setContent(caption)
+        return cardOrderedList
     }
 }
