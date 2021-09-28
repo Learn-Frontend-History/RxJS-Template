@@ -45,6 +45,11 @@ export class Templater {
             node.name
         )
 
+        if (!componentObject) {
+            console.error(`Unknown tag name: "${node.name}"`)
+            return
+        }
+
         componentObject.setContent(node.content)
 
         node.attributes.forEach(
@@ -125,13 +130,13 @@ export class Templater {
 
     private parseSettings(name): NodeSettings {
         const result: NodeSettings = {
-            name: name.match(/(.+)\s/)[1],
+            name: name.match(/([^\s]+)/)[1],
             attributes: [],
             events: [],
             properties: []
         }
 
-        name.split(' ').splice(1).forEach(
+        name.match(/[^=\s]+="[^"]+"/g).forEach(
                 attribute => {
                     const [,type, name,, value] = attribute.match(/([(|\[]?)([^)\]]+)([)|\]]?)="(.+)"/)
 
