@@ -1,5 +1,5 @@
-const fs = require('fs')
 const path = require('path');
+const glob = require("glob");
 
 const dir = (__path) => path.resolve(__dirname, __path);
 
@@ -13,12 +13,13 @@ function getResolveExtensions() {
     return ['ts', 'js']
 }
 function getRxJSEntry() {
-    const extensions = getResolveExtensions().join('|')
-    const rxjs = fs.readdirSync(
-        'src/rxjs'
-    ).filter(
-        file => new RegExp(`.(${extensions})$`).test(file)
-    ).map(file => `./rxjs/${file}`)
+    const extensions = getResolveExtensions().join(',')
+    const rxjs = glob.sync(
+        `rxjs/**/*.{${extensions}}`,
+        {cwd: 'src'}
+    ).map(file => `./${file}`)
+
+    console.log(rxjs)
 
     return rxjs.length ? { rxjs } : {}
 }
