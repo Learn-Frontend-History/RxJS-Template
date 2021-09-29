@@ -1,6 +1,8 @@
-import html from './html'
-import {Component} from "@/classes/component";
-import * as moment from "moment";
+import html from './index.html'
+import './styles.sass'
+
+import {Component} from "@/classes/component"
+import * as moment from "moment"
 
 export default class LogRow extends Component {
     constructor(message: string) {

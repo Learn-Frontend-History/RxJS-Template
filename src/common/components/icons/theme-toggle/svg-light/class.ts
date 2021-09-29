@@ -1,4 +1,5 @@
-import view from './html'
+import './styles.sass';
+const svg = require('./icon.svg')
 import {Component} from "@/classes/component";
 
 type Theme = 'light' | 'dark'
@@ -9,7 +10,7 @@ export default class ThemeToggleLight extends Component {
     }
 
     constructor() {
-        super(view);
+        super(svg);
 
         this.component.addEventListener(
             'click',

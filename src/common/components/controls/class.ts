@@ -1,6 +1,9 @@
-import html from './html'
+import html from './index.html'
+import './styles.sass';
+
 import {Component} from "@/classes/component";
 import Button from "@/components/button/class";
+
 
 export default class Controls extends Component {
     constructor() {

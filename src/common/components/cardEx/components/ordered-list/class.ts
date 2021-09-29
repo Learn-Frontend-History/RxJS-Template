@@ -1,6 +1,8 @@
-import html from './html'
-import {Component} from "@/classes/component";
-import ListItem from "@/components/cardEx/components/ordered-list/components/list-item/class";
+import html from './index.html'
+import './styles.sass'
+
+import {Component} from "@/classes/component"
+import ListItem from "@/components/cardEx/components/ordered-list/components/list-item/class"
 
 export default class CardOrderedList extends Component {
     constructor() {
@@ -8,7 +10,6 @@ export default class CardOrderedList extends Component {
     }
 
     setContent(content: string) {
-
         content.split('\n').forEach(
             caption => this.component.append(
                 (new ListItem(caption)).component

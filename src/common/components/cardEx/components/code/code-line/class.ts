@@ -1,10 +1,14 @@
-import html from './html'
+import html from './index.html'
+import './styles.sass';
+
 import {Component} from "@/classes/component";
 
 export default class CodeLine extends Component {
-    constructor(caption: string) {
+    constructor() {
         super(html);
+    }
 
-        this.child('line').innerText = caption
+    setContent(content: string) {
+        this.child('line').innerText = content
     }
 }

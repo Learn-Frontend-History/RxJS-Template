@@ -1,4 +1,6 @@
-import html from './html'
+import html from './index.html'
+import './styles.sass'
+
 import Collapse from "@/components/icons/toggle/collapse/class";
 import Expand from "@/components/icons/toggle/expand/class";
 import Toggle from "@/classes/toggle";

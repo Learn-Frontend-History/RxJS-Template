@@ -1,10 +1,8 @@
-import html from './html'
-import {Component} from "@/classes/component";
-import Button from "@/components/button/class";
+import html from './index.html'
+import './styles.sass';
 
-export interface ButtonGroupPayload {
-    controls: Button[]
-}
+import {Component} from "@/classes/component";
+
 export default class ButtonGroup extends Component {
     constructor() {
         super(html);

@@ -1,7 +1,9 @@
-import html from './html'
-import {Component} from "@/classes/component";
-import ParagraphAccent from "@/components/cardEx/components/paragraph/components/accent/class";
-import ParagraphText from "@/components/cardEx/components/paragraph/components/text/class";
+import html from './index.html'
+import './styles.sass'
+
+import {Component} from "@/classes/component"
+import ParagraphAccent from "@/components/cardEx/components/paragraph/components/accent/class"
+import ParagraphText from "@/components/cardEx/components/paragraph/components/text/class"
 
 export default class CardParagraph extends Component {
     constructor() {

@@ -1,11 +1,13 @@
-import html from './html'
-import {Component} from "@/classes/component";
+import html from './index.html'
+import './styles.sass'
+
+import {Component} from "@/classes/component"
 
 import Animation from '../animation/class'
-import ExecutionTime from "@/components/execution-time/class";
-import Title from "@/components/title/class";
-import Controls from "@/components/controls/class";
-import Button from "@/components/button/class";
+import ExecutionTime from "@/components/execution-time/class"
+import Title from "@/components/title/class"
+import Controls from "@/components/controls/class"
+import Button from "@/components/button/class"
 
 export interface ShowOptions {
     title?: string,

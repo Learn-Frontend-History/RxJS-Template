@@ -1,9 +1,10 @@
-import html from './html'
+import svg from './animation.svg'
+import './styles.sass';
 import {Component} from "@/classes/component";
 
 export default class Animation extends Component {
     constructor() {
-        super(html);
+        super(svg);
     }
 
     show() {

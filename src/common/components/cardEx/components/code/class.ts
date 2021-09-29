@@ -1,4 +1,6 @@
-import html from './html'
+import html from './index.html'
+import './styles.sass';
+
 import {Component} from "@/classes/component";
 import CodeLine from "@/components/cardEx/components/code/code-line/class";
 
@@ -9,9 +11,11 @@ export default class CardCode extends Component {
 
     setContent(content: string) {
         content.split('\n').forEach(
-            line => this.component.append(
-                (new CodeLine(line)).component
-            )
+            line => {
+                const codeLine = new CodeLine()
+                codeLine.setContent(line)
+                this.component.append(codeLine.component)
+            }
         )
     }
 }

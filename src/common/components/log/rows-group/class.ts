@@ -1,4 +1,6 @@
-import html from './html'
+import html from './index.html'
+import './styles.sass';
+
 import {Component} from "@/classes/component";
 import GroupToggle from "@/components/icons/toggle/icon/class";
 

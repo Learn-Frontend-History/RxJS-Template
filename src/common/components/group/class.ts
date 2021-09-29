@@ -1,10 +1,7 @@
-import html from './html'
-import {Component} from "@/classes/component";
+import html from './index.html'
+import './styles.sass'
 
-export interface GroupPayload {
-    controls: Component[],
-    caption: string
-}
+import {Component} from "@/classes/component"
 
 export default class Group extends Component {
     constructor() {
@@ -22,6 +19,8 @@ export default class Group extends Component {
                 caption.innerText = value
                 caption.setAttribute('title', value)
                 break
+            default:
+                super.set(name, value)
         }
     }
 
