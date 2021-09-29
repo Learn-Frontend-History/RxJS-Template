@@ -6,6 +6,7 @@ import CardOrderedList from "@/components/cardEx/components/ordered-list/class";
 import Button from "@/components/button/class";
 import ButtonGroup from "@/components/button-group/class";
 import Group from "@/components/group/class";
+import CardSubHeader from "@/components/cardEx/components/sub-header/class";
 
 export class Factory {
     constructor() {
@@ -18,7 +19,7 @@ export class Factory {
             case 'card-header':
                 return new CardHeader()
             case 'card-sub-header':
-                return new CardHeader()
+                return new CardSubHeader()
             case 'card-paragraph':
                 return new CardParagraph()
             case 'card-code':
