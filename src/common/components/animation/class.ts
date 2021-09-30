@@ -1,4 +1,4 @@
-import svg from './animation.svg'
+const svg = require('./animation.svg')
 import './styles.sass';
 import {Component} from "@/classes/component";
 
@@ -8,10 +8,20 @@ export default class Animation extends Component {
     }
 
     show() {
-        this.component.style.display = 'block'
+        this.set('display', true)
     }
 
     hide() {
-        this.component.style.display = 'none'
+        this.set('display', false)
+    }
+
+    set(name, value) {
+        switch (name) {
+            case 'display':
+                this.component.style.display = value ? 'block' : 'hide'
+                break
+            default:
+                super.set(name, value)
+        }
     }
 }

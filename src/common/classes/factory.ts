@@ -7,6 +7,7 @@ import Button from "@/components/button/class";
 import ButtonGroup from "@/components/button-group/class";
 import Group from "@/components/group/class";
 import CardSubHeader from "@/components/cardEx/components/sub-header/class";
+import Animation from "@/components/animation/class";
 
 export class Factory {
     constructor() {
@@ -32,6 +33,8 @@ export class Factory {
                 return new ButtonGroup()
             case 'group':
                 return new Group()
+            case 'animation':
+                return new Animation()
             default:
                 return null
         }

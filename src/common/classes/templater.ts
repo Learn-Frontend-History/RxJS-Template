@@ -50,7 +50,9 @@ export class Templater {
             return
         }
 
-        componentObject.setContent(node.content)
+        if (node.content !== null) {
+            componentObject.setContent(node.content)
+        }
 
         node.attributes.forEach(
             ({name, value}) => componentObject.set(
