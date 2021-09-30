@@ -1,10 +1,8 @@
 import './index.sass'
-import header from "./components/header";
+import './components/main-header/index'
 import _log from './components/log'
 
 document.body.className = localStorage.getItem('theme') || 'light'
-
-document.getElementById('header').append(header.component)
 
 document.getElementById('log').append(_log.component)
 

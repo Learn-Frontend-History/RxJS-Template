@@ -3,18 +3,23 @@ import './styles.sass'
 
 import {Component} from "@/classes/component"
 
-import ThemeToggle from "@/components/icons/theme-toggle/icon/class"
-import ClearLog from "@/components/icons/clear-log/icon/class"
-
 export default class Header extends Component {
-    constructor(title: string) {
+    constructor() {
         super(html);
+    }
 
-        this.child('title').innerText = title
+    append(control: Component) {
+        this.child('tools').append(control.component)
+    }
 
-        this.child('tools').append(
-            (new ClearLog()).component,
-            (new ThemeToggle()).component,
-        )
+    set(name: string, value: any) {
+        switch (name) {
+            case 'caption':
+                this.child('title').innerText = value
+                break
+            default:
+                super.set(name, value)
+        }
+        super.set(name, value);
     }
 }

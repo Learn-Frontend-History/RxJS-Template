@@ -9,6 +9,9 @@ import Group from "@/components/group/class";
 import CardSubHeader from "@/components/card/components/sub-header/class";
 import Animation from "@/components/animation/class";
 import ExecutionTime from "@/components/execution-time/class";
+import Header from "@/components/header/class";
+import ClearLog from "@/components/icons/clear-log/icon/class";
+import ThemeToggle from "@/components/icons/theme-toggle/icon/class";
 
 export class Factory {
     constructor() {
@@ -16,6 +19,12 @@ export class Factory {
 
     create(component: string) {
         switch (component) {
+            case 'header':
+                return new Header()
+            case 'clear-log':
+                return new ClearLog()
+            case 'theme-toggle':
+                return new ThemeToggle()
             case 'card':
                 return new Card()
             case 'card-header':
