@@ -1,4 +1,4 @@
-const svg = require('./icon.svg')
+import svg from './icon.svg'
 
 import './styles.sass'
 import {Component} from "@/classes/component"

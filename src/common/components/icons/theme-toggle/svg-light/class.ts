@@ -1,5 +1,5 @@
 import './styles.sass';
-const svg = require('./icon.svg')
+import svg from './icon.svg'
 import {Component} from "@/classes/component";
 
 type Theme = 'light' | 'dark'
