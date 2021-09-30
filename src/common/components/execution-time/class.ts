@@ -27,6 +27,16 @@ export default class ExecutionTime extends Component {
         clearInterval(this.updateInterval)
     }
 
+    set(name: string, value: any) {
+        switch (name) {
+            case 'active':
+                value ? this.start() : this.stop()
+                break
+            default:
+                super.set(name, value);
+        }
+    }
+
     private getExecutingTime(): string {
         return moment(Date.now() - this.startTimestamp).format('mm:ss SSS')
     }
