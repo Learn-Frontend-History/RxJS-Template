@@ -1,13 +1,14 @@
-import CardEx from "@/components/cardEx/class";
-import CardHeader from "@/components/cardEx/components/header/class";
-import CardParagraph from "@/components/cardEx/components/paragraph/class";
-import CardCode from "@/components/cardEx/components/code/class";
-import CardOrderedList from "@/components/cardEx/components/ordered-list/class";
+import Card from "@/components/card/class";
+import CardHeader from "@/components/card/components/header/class";
+import CardParagraph from "@/components/card/components/paragraph/class";
+import CardCode from "@/components/card/components/code/class";
+import CardOrderedList from "@/components/card/components/ordered-list/class";
 import Button from "@/components/button/class";
 import ButtonGroup from "@/components/button-group/class";
 import Group from "@/components/group/class";
-import CardSubHeader from "@/components/cardEx/components/sub-header/class";
+import CardSubHeader from "@/components/card/components/sub-header/class";
 import Animation from "@/components/animation/class";
+import ExecutionTime from "@/components/execution-time/class";
 
 export class Factory {
     constructor() {
@@ -15,8 +16,8 @@ export class Factory {
 
     create(component: string) {
         switch (component) {
-            case 'card-ex':
-                return new CardEx()
+            case 'card':
+                return new Card()
             case 'card-header':
                 return new CardHeader()
             case 'card-sub-header':
@@ -35,6 +36,8 @@ export class Factory {
                 return new Group()
             case 'animation':
                 return new Animation()
+            case 'execution-time':
+                return new ExecutionTime()
             default:
                 return null
         }

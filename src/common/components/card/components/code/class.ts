@@ -2,7 +2,7 @@ import html from './index.html'
 import './styles.sass';
 
 import {Component} from "@/classes/component";
-import CodeLine from "@/components/cardEx/components/code/code-line/class";
+import CodeLine from "@/components/card/components/code/code-line/class";
 
 export default class CardCode extends Component {
     constructor() {
