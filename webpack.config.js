@@ -54,11 +54,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.html$/,
-                use: 'html-loader'
-            },
-            {
+             {
                 test: /\.sass$/,
                 use: [
                     plugins.css.loader,
@@ -72,8 +68,8 @@ module.exports = {
                 use: 'ts-loader'
             },
             {
-                test: /\.svg$/,
-                use: 'svg-inline-loader'
+                test: /\.(svg|html)$/,
+                use: 'raw-loader'
             }
         ]
     },
