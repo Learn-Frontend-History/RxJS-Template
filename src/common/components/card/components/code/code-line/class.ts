@@ -1,7 +1,7 @@
 import html from './index.html'
 import './styles.sass';
 
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
 
 export default class CodeLine extends Component {
     constructor() {
@@ -12,3 +12,4 @@ export default class CodeLine extends Component {
         this.child('line').innerText = content
     }
 }
+

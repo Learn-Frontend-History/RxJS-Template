@@ -1,4 +1,4 @@
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
 
 export default class Icon extends Component {
     constructor(

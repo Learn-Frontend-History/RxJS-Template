@@ -1,5 +1,5 @@
-import {Factory} from "@/classes/factory";
-import {Component} from "@/classes/component";
+import {Factory} from "@/base/factory";
+import {Component} from "@/base/component";
 
 interface NodeSettings {
     name: string,
@@ -28,7 +28,6 @@ export class Templater {
     constructor(
         private container: HTMLElement,
         private controller: Object,
-        private factory: Factory,
         private template: string,
     ) {
         this.render(this.template)
@@ -41,7 +40,7 @@ export class Templater {
     }
 
     private renderChild(node: TemplateNode, root: Component) {
-        const componentObject: Component = this.factory.create(
+        const componentObject: Component = Factory.create(
             node.name
         )
 
@@ -61,14 +60,21 @@ export class Templater {
         )
 
         node.properties.forEach(
-            ({name, value}) => componentObject.set(
-                name, this.controller[value]
-            )
+            ({name, value}) => {
+                const initValue = this.controller[value]
+                delete this.controller[value]
+
+                Object.defineProperty(this.controller, value, {
+                    set: componentObject.set.bind(componentObject, name)
+                })
+
+                this.controller[value] = initValue
+            }
         )
 
         node.events.forEach(
             ({type, listener}) => componentObject.on(
-                type, this.controller[listener]
+                type, this.controller[listener].bind(this.controller)
             )
         )
 

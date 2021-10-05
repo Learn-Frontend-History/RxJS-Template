@@ -1,7 +1,7 @@
 import svg from './icon.svg'
 import './styles.sass'
 
-import {Component} from "@/classes/component"
+import {Component} from "@/base/component"
 
 type Theme = 'light' | 'dark'
 

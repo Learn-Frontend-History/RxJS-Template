@@ -1,4 +1,3 @@
-// TODO implement interface to append child, set content, set attributes
 export class Component {
     component: HTMLElement
     constructor(

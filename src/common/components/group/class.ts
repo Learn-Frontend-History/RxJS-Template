@@ -1,7 +1,8 @@
 import html from './index.html'
 import './styles.sass'
 
-import {Component} from "@/classes/component"
+import {Component} from "@/base/component"
+import {Factory} from "@/base/factory";
 
 export default class Group extends Component {
     constructor() {
@@ -28,3 +29,5 @@ export default class Group extends Component {
         //
     }
 }
+
+Factory.reg('group', Group)

@@ -1,8 +1,9 @@
 import html from './index.html'
 import './styles.sass'
 
-import {Component} from "@/classes/component"
+import {Component} from "@/base/component"
 import * as moment from "moment"
+import {Factory} from "@/base/factory";
 
 export default class LogRow extends Component {
     constructor(message: string) {
@@ -17,3 +18,5 @@ export default class LogRow extends Component {
         )[0].innerHTML = moment().format('HH:mm:ss SSS')
     }
 }
+
+Factory.reg('log-row', LogRow)

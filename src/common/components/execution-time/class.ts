@@ -1,8 +1,9 @@
 import html from './index.html'
 import './styles.sass';
 
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
 import * as moment from "moment";
+import {Factory} from "@/base/factory";
 
 export default class ExecutionTime extends Component {
     private startTimestamp: number
@@ -41,3 +42,5 @@ export default class ExecutionTime extends Component {
         return moment(Date.now() - this.startTimestamp).format('mm:ss SSS')
     }
 }
+
+Factory.reg('execution-time', ExecutionTime)

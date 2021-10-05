@@ -4,6 +4,7 @@ import './styles.sass'
 import ThemeToggleDark from "@/components/icons/theme-toggle/svg-dark/class"
 import ThemeToggleLight from "@/components/icons/theme-toggle/svg-light/class"
 import Toggle from "@/classes/toggle"
+import {Factory} from "@/base/factory";
 
 export default class ThemeToggle extends Toggle {
     constructor() {
@@ -21,3 +22,5 @@ export default class ThemeToggle extends Toggle {
         );
     }
 }
+
+Factory.reg('theme-toggle', ThemeToggle)

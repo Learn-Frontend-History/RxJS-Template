@@ -12,22 +12,25 @@ const plugins = {
 function getResolveExtensions() {
     return ['ts', 'js']
 }
-function getRxJSEntry() {
+function entryFromDir(dir) {
     const extensions = getResolveExtensions().join(',')
-    const rxjs = glob.sync(
-        `rxjs/**/*.{${extensions}}`,
+    return glob.sync(
+        `${dir}/**/*.{${extensions}}`,
         {cwd: 'src'}
     ).map(file => `./${file}`)
 
-    return rxjs.length ? { rxjs } : {}
+    // return files.length ? { [dir.replace('/', '-')]: files } : {}
 }
 
 module.exports = {
     mode: 'development',
     context: dir('src'),
     entry: {
-        main: './index.ts',
-        ...getRxJSEntry()
+        main: [
+            ...entryFromDir('common/components'),
+            ...entryFromDir('rxjs'),
+            './index.ts',
+        ],
     },
     output: {
         path: dir('dist'),

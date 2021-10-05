@@ -1,8 +1,9 @@
 import html from './index.html'
 import './styles.sass';
 
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
 import CodeLine from "@/components/card/components/code/code-line/class";
+import {Factory} from "@/base/factory";
 
 export default class CardCode extends Component {
     constructor() {
@@ -19,3 +20,5 @@ export default class CardCode extends Component {
         )
     }
 }
+
+Factory.reg('card-code', CardCode)

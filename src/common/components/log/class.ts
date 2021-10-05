@@ -1,9 +1,10 @@
 import html from './index.html'
 import './styles.sass';
 
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
 import LogRow from "@/components/log/row/class";
 import LogRowsGroup from "@/components/log/rows-group/class";
+import {Factory} from "@/base/factory";
 
 export default class Log extends Component {
     private currentGroup: LogRowsGroup
@@ -33,3 +34,5 @@ export default class Log extends Component {
         this.currentGroup = null
     }
 }
+
+Factory.reg('log', Log)

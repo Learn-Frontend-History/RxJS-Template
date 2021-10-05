@@ -3,6 +3,7 @@ import './styles.sass'
 
 import ClearLogIcon from "@/components/icons/clear-log/svg/class"
 import Icon from "@/classes/icon"
+import {Factory} from "@/base/factory";
 
 export default class ClearLog extends Icon {
     constructor() {
@@ -15,3 +16,5 @@ export default class ClearLog extends Icon {
         );
     }
 }
+
+Factory.reg('clear-log', ClearLog)

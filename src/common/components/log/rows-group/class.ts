@@ -1,8 +1,9 @@
 import html from './index.html'
 import './styles.sass';
 
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
 import GroupToggle from "@/components/icons/toggle/icon/class";
+import {Factory} from "@/base/factory";
 
 export default class LogRowsGroup extends Component {
     get rows(): HTMLElement {
@@ -28,3 +29,5 @@ export default class LogRowsGroup extends Component {
         this.child('rows').classList.add('collapse')
     }
 }
+
+Factory.reg('log-rows-group', LogRowsGroup)

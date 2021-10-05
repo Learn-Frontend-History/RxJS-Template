@@ -1,6 +1,7 @@
 import svg from './animation.svg'
 import './styles.sass';
-import {Component} from "@/classes/component";
+import {Component} from "@/base/component";
+import {Factory} from "@/base/factory";
 
 export default class Animation extends Component {
     constructor() {
@@ -25,3 +26,5 @@ export default class Animation extends Component {
         }
     }
 }
+
+Factory.reg('animation', Animation)

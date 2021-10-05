@@ -1,9 +1,10 @@
 import html from './index.html'
 import './styles.sass'
 
-import {Component} from "@/classes/component"
+import {Component} from "@/base/component"
 import ParagraphAccent from "@/components/card/components/paragraph/components/accent/class"
 import ParagraphText from "@/components/card/components/paragraph/components/text/class"
+import {Factory} from "@/base/factory";
 
 export default class CardParagraph extends Component {
     constructor() {
@@ -26,3 +27,5 @@ export default class CardParagraph extends Component {
         )
     }
 }
+
+Factory.reg('card-paragraph', CardParagraph)

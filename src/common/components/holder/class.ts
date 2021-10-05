@@ -1,101 +1,50 @@
 import html from './index.html'
 import './styles.sass'
 
-import {Component} from "@/classes/component"
-
-import Animation from '../animation/class'
-import ExecutionTime from "@/components/execution-time/class"
-import Title from "@/components/title/class"
-import Controls from "@/components/controls/class"
-import Button from "@/components/button/class"
-
-export interface ShowOptions {
-    title?: string,
-    controls?: Button[],
-    showAnimation?: boolean,
-    startTimer?: boolean
-}
+import {Component} from "@/base/component"
+import {Factory} from "@/base/factory";
 
 export class Holder extends Component {
-    private title: Title
-    private controls: Controls
-    private animation: Animation
-    private executionTime: ExecutionTime
-
     constructor() {
         super(html);
 
-        this.title = this.addTitle()
-        this.controls = this.addControls()
-        this.animation = this.addAnimation()
-        this.executionTime = this.addExecutionTime()
-    }
+        const animation = Factory.create('animation')
+        animation.set('display', true)
 
-    show(
-        {
-            title = '', controls = [], showAnimation = true, startTimer = true
-        }: ShowOptions = {}
-    ) {
-        this.component.style.display = 'grid'
+        const executionTime = Factory.create('execution-time')
+        executionTime.set('active', true)
 
-        if (title) {
-            this.title.show(title)
-        }
-
-        if (controls) {
-            this.controls.show(controls)
-        }
-
-        if (showAnimation) {
-            this.animation.show()
-        }
-
-        if (startTimer) {
-            this.executionTime.start()
-        }
-
-        setTimeout(() => this.component.classList.toggle('in'), 1)
-    }
-
-    hide() {
-        this.component.classList.toggle('in')
-
-        this.title.hide()
-        this.controls.hide()
-        this.executionTime.stop()
-        this.animation.hide()
-
-
-        setTimeout(() => {
-            this.component.style.display = 'none'
-        }, 500)
-    }
-
-    private addTitle(): Title {
-        const title = new Title()
-        this.child('title').append(title.component)
-
-        return title
-    }
-
-    private addControls(): Controls {
-        const controls = new Controls()
-        this.child('controls').append(controls.component)
-
-        return controls
-    }
-
-    private addAnimation(): Animation {
-        const animation = new Animation()
         this.child('animation').append(animation.component)
-
-        return animation
-    }
-
-    private addExecutionTime(): ExecutionTime {
-        const executionTime = new ExecutionTime()
         this.child('execution-time').append(executionTime.component)
 
-        return executionTime
+    }
+
+    set(name, value) {
+        switch (name) {
+            case 'header':
+                this.child('header').innerText = value
+                break
+            case 'display':
+                if (value) {
+                    this.component.style.display = 'grid'
+                    this.component.style.opacity = '1'
+                } else {
+                    this.component.style.display = 'none'
+                    this.component.style.opacity = '0'
+                }
+                break
+            default:
+                super.set(name, value)
+        }
+    }
+
+    append(control: Component) {
+        this.child('controls').append(control.component)
+    }
+
+    setContent(content: string) {
+        //
     }
 }
+
+Factory.reg('holder', Holder)

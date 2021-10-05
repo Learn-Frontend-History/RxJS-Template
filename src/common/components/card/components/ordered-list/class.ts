@@ -1,8 +1,9 @@
 import html from './index.html'
 import './styles.sass'
 
-import {Component} from "@/classes/component"
+import {Component} from "@/base/component"
 import ListItem from "@/components/card/components/ordered-list/components/list-item/class"
+import {Factory} from "@/base/factory";
 
 export default class CardOrderedList extends Component {
     constructor() {
@@ -17,3 +18,5 @@ export default class CardOrderedList extends Component {
         )
     }
 }
+
+Factory.reg('card-ordered-list', CardOrderedList)
