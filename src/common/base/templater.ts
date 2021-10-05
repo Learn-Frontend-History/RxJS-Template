@@ -6,6 +6,7 @@ interface NodeSettings {
     attributes: NodeAttribute[]
     events: NodeEvent[]
     properties: NodeAttribute[]
+    directives: any[]
 }
 
 interface NodeAttribute {
@@ -18,10 +19,33 @@ interface NodeEvent {
     listener: string
 }
 
-interface TemplateNode extends NodeSettings{
-    children: TemplateNode[]
-    parent: TemplateNode
-    content: string
+class TemplateNode implements NodeSettings {
+    attributes: NodeAttribute[] = []
+    directives: any[] = []
+    events: NodeEvent[] = []
+    properties: NodeAttribute[] = []
+
+    parent: TemplateNode = null
+    children: TemplateNode[] = []
+    context: any = null
+    content: string = null
+
+    constructor(
+        public name: string = 'template',
+    ) {
+    }
+
+    addChildren(node: TemplateNode) {
+        this.children.push(node)
+        node.parent = this
+    }
+
+    removeChildren(node: TemplateNode) {
+        (this.children.splice(
+            this.children.indexOf(node),
+            1
+        ))[0].parent = null
+    }
 }
 
 export class Templater {
@@ -34,9 +58,46 @@ export class Templater {
     }
 
     private render(template: string) {
-        this.parse(template).children.forEach(
+        this.parse(
+            template
+        ).children.map<TemplateNode>(
+            this.applyDirectives.bind(this)
+        ).forEach(
             node => this.renderChild(node, new Component(this.container))
         )
+    }
+
+    applyDirectives(node: TemplateNode) {
+        node.directives.forEach(
+            ({name, value}) => {
+                switch (name) {
+                    case 'repeat':
+                        (node?.parent.context?.[value] || this.controller[value]).forEach(
+                            context => {
+                                const itemNode = new TemplateNode(node.name)
+                                itemNode.attributes = node.attributes
+                                itemNode.context = context
+                                node.children.forEach(itemNode.addChildren.bind(itemNode))
+
+                                node.parent.addChildren(itemNode)
+
+                                itemNode.children.forEach(this.applyDirectives.bind(this))
+                            }
+                        )
+
+                        node.parent.removeChildren(node)
+                        return
+                    default:
+                        break
+                }
+            }
+        )
+
+        if (node.directives.length === 0) {
+            node.children.forEach(this.applyDirectives.bind(this))
+        }
+
+        return node
     }
 
     private renderChild(node: TemplateNode, root: Component) {
@@ -45,7 +106,6 @@ export class Templater {
         )
 
         if (!componentObject) {
-            console.error(`Unknown tag name: "${node.name}"`)
             return
         }
 
@@ -54,9 +114,11 @@ export class Templater {
         }
 
         node.attributes.forEach(
-            ({name, value}) => componentObject.set(
-                name, value
-            )
+            ({name, value}) => {
+                componentObject.set(
+                    name, node.context ? node.context[value] : value
+                )
+            }
         )
 
         node.properties.forEach(
@@ -81,7 +143,7 @@ export class Templater {
         root.append(componentObject)
 
         node.children.forEach(
-            node => this.renderChild(node, componentObject)
+            child => this.renderChild(child, componentObject)
         )
     }
 
@@ -95,19 +157,11 @@ export class Templater {
                 if (part[0] === '/') { // end of current root
                     root = root.parent
                 } else { // children of current root
-                    const _root = root || tree // if current root not selected get tree root
-                    const current: TemplateNode = {
-                        name: part,
-                        children: [],
-                        parent: _root,
-                        content: null,
-                        attributes: [],
-                        events: [],
-                        properties: []
-                    }
+                    const current = new TemplateNode(part);
 
-                    _root.children.push(current)
-                    if (~part.indexOf('/')) { // `button>click!</button` - element with content
+                    (root || tree).addChildren(current)
+
+                    if (~part.indexOf('/')) { // `button>click</button` - element with content
                         const [, name, content] = part.match(/([^>]+)>([^<]+)/)
                         current.name = name
                         current.content = ~content.indexOf('\n')
@@ -124,15 +178,7 @@ export class Templater {
 
                 return tree
             },
-            {
-                name: 'template',
-                children: [],
-                parent: null,
-                content: null,
-                attributes: [],
-                events: [],
-                properties: []
-            }
+            new TemplateNode()
         )
     }
 
@@ -141,33 +187,38 @@ export class Templater {
             name: name.match(/([^\s]+)/)[1],
             attributes: [],
             events: [],
-            properties: []
+            properties: [],
+            directives: []
         }
 
         name.match(/[^=\s]+="[^"]+"/g).forEach(
-                attribute => {
-                    const [,type, name,, value] = attribute.match(/([(|\[]?)([^)\]]+)([)|\]]?)="(.+)"/)
+            attribute => {
+                const [, type, name, , value] = attribute.match(/([(\[*]?)([^)\]]+)([)|\]]?)="(.+)"/)
 
-                    switch (type) {
-                        case '':
-                            result.attributes.push({
-                                name,  value
-                            })
-                            break
-                        case '[':
-                            result.properties.push({
-                                name,  value
-                            })
-                            break
-                        case '(':
-                            result.events.push({
-                                type: name,
-                                listener: value
-                            })
-                            break
-                    }
+                switch (type) {
+                    case '':
+                        result.attributes.push({
+                            name, value
+                        })
+                        break
+                    case '[':
+                        result.properties.push({
+                            name, value
+                        })
+                        break
+                    case '(':
+                        result.events.push({
+                            type: name,
+                            listener: value
+                        })
+                        break
+                    case '*':
+                        result.directives.push({
+                            name, value
+                        })
                 }
-            )
+            }
+        )
 
         return result
     }
