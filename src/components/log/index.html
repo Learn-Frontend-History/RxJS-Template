@@ -1,5 +1,7 @@
 <log>
-    <log-rows-group repeat="groups">
-        <log-row></log-row>
+    <log-rows-group *repeat="groups" caption="caption">
+        <log-rows-group *repeat="subGroups" caption="caption">
+            <log-row *repeat="rows" message="message"></log-row>
+        </log-rows-group>
     </log-rows-group>
 </log>
