@@ -6,14 +6,9 @@ import GroupToggle from "@/components/icons/toggle/icon/class";
 import {Factory} from "@/base/factory";
 
 export default class LogRowsGroup extends Component {
-    get rows(): HTMLElement {
-        return this.child('rows')
-    }
-
-    constructor(caption: string) {
+    constructor() {
         super(html);
 
-        this.child('caption').innerText = caption
         this.child('collapse').append(
             (new GroupToggle(
                 flag => flag ? this.collapse() : this.expand()
@@ -22,11 +17,36 @@ export default class LogRowsGroup extends Component {
     }
 
     expand() {
-        this.child('rows').classList.remove('collapse')
+        this.set('collapse', false)
     }
 
     collapse() {
-        this.child('rows').classList.add('collapse')
+        this.set('collapse', true)
+    }
+
+    set(name: string, value: any) {
+        switch (name) {
+            case 'caption':
+                this.child('caption').innerText = value
+                break
+            case 'collapse':
+                if (value) {
+                    this.child('rows').classList.add('collapse')
+                } else {
+                    this.child('rows').classList.remove('collapse')
+                }
+                break
+            default:
+                super.set(name, value);
+        }
+    }
+
+    append(control: Component) {
+        this.child('rows').append(control.component)
+    }
+
+    setContent(content: string) {
+        //
     }
 }
 

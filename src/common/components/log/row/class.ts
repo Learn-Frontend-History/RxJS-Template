@@ -6,16 +6,27 @@ import * as moment from "moment"
 import {Factory} from "@/base/factory";
 
 export default class LogRow extends Component {
-    constructor(message: string) {
+    constructor() {
         super(html);
 
-        this.component.getElementsByClassName(
-            'message'
-        )[0].innerHTML = message
+        this.set('timestamp', moment().format('HH:mm:ss SSS'))
+    }
 
-        this.component.getElementsByClassName(
-            'timestamp'
-        )[0].innerHTML = moment().format('HH:mm:ss SSS')
+    set(name: string, value: any) {
+        switch (name) {
+            case 'message':
+                this.child('message').innerText = value
+                break
+            case 'timestamp':
+                this.child('timestamp').innerText = value
+                break
+            default:
+                super.set(name, value);
+        }
+    }
+
+    setContent(content: string) {
+        //
     }
 }
 
