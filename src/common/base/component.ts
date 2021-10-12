@@ -19,8 +19,8 @@ export class Component {
         return this.component.getElementsByClassName(className)?.[0] as HTMLElement
     }
 
-    public append(control: Component) {
-        this.component.append(control.component)
+    public append(controls: Component[]) {
+        this.component.append(...controls.map(control => control.component))
     }
 
     public on(type: string, listener: (...ars) => void) {

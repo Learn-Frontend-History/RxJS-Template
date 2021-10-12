@@ -41,8 +41,10 @@ export default class LogRowsGroup extends Component {
         }
     }
 
-    append(control: Component) {
-        this.child('rows').append(control.component)
+    append(controls: Component[]) {
+        this.child('rows').append(
+            ...controls.map(control => control.component)
+        )
     }
 
     setContent(content: string) {

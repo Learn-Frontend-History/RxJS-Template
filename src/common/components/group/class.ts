@@ -9,8 +9,10 @@ export default class Group extends Component {
         super(html);
     }
 
-    append(control: Component) {
-        this.child('content').append(control.component)
+    append(controls: Component[]) {
+        this.child('content').append(
+            ...controls.map(control => control.component)
+        )
     }
 
     set(name: string, value: any) {

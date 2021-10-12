@@ -9,8 +9,10 @@ export default class Header extends Component {
         super(html);
     }
 
-    append(control: Component) {
-        this.child('tools').append(control.component)
+    append(controls: Component[]) {
+        this.child('tools').append(
+            ...controls.map(control => control.component)
+        )
     }
 
     set(name: string, value: any) {

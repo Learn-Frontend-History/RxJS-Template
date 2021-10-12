@@ -38,8 +38,10 @@ export class Holder extends Component {
         }
     }
 
-    append(control: Component) {
-        this.child('controls').append(control.component)
+    append(controls: Component[]) {
+        this.child('controls').append(
+            ...controls.map(control => control.component)
+        )
     }
 
     setContent(content: string) {

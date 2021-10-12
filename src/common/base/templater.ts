@@ -1,12 +1,21 @@
 import {Factory} from "@/base/factory";
 import {Component} from "@/base/component";
+import {ArrayHandler} from "@/base/proxy/array-handler";
+import {DomArray} from "@/base/proxy/dom-array";
+
+type DIRECTIVE = 'repeat' | 'other'
+
+interface Directive {
+    name: DIRECTIVE,
+    value: any
+}
 
 interface NodeSettings {
     name: string,
     attributes: NodeAttribute[]
     events: NodeEvent[]
     properties: NodeAttribute[]
-    directives: any[]
+    directives: Directive[]
 }
 
 interface NodeAttribute {
@@ -21,7 +30,7 @@ interface NodeEvent {
 
 class TemplateNode implements NodeSettings {
     attributes: NodeAttribute[] = []
-    directives: any[] = []
+    directives: Directive[] = []
     events: NodeEvent[] = []
     properties: NodeAttribute[] = []
 
@@ -60,47 +69,81 @@ export class Templater {
     private render(template: string) {
         this.parse(
             template
-        ).children.map<TemplateNode>(
-            this.applyDirectives.bind(this)
-        ).forEach(
-            node => this.renderChild(node, new Component(this.container))
+        ).children.forEach(
+            node => {
+                const root = new Component(this.container)
+                root.append(this.renderChild(node, root))
+            }
         )
     }
 
-    applyDirectives(node: TemplateNode) {
+    private renderChildWithDirective(node: TemplateNode, root: Component): Component[] {
+        const componentsObjects: Component[] = []
+
         node.directives.forEach(
-            ({name, value}) => {
-                switch (name) {
+            directive => {
+                switch (directive.name) {
                     case 'repeat':
-                        (node?.parent.context?.[value] || this.controller[value]).forEach(
-                            context => {
-                                const itemNode = new TemplateNode(node.name)
-                                itemNode.attributes = node.attributes
-                                itemNode.context = context
-                                node.children.forEach(itemNode.addChildren.bind(itemNode))
+                        node.directives.splice(
+                            node.directives.indexOf(directive),
+                            1
+                        );
 
-                                node.parent.addChildren(itemNode)
+                        const items = this.controller?.[directive.value] || node?.parent.context?.[directive.value] || [];
+                        items.forEach(
+                            item => {
+                                node.context = item
 
-                                itemNode.children.forEach(this.applyDirectives.bind(this))
+                                componentsObjects.push(
+                                    ...this.renderChild(
+                                        {...node, context: item} as TemplateNode,
+                                        root
+                                    )
+                                )
                             }
                         )
 
-                        node.parent.removeChildren(node)
-                        return
-                    default:
+                        if (!items.__isProxy) {
+                            const arrayHandler = new ArrayHandler(
+                                new DomArray(
+                                    root,
+                                    item => {
+                                        node.context = item
+                                        return this.renderChild(
+                                            node, root, true
+                                        )
+                                    }
+                                )
+                            );
+
+                            if (
+                                this.controller?.[directive.value]
+                            ) {
+                                this.controller[directive.value] = new Proxy(this.controller[directive.value], arrayHandler)
+                                this.controller[directive.value].__isProxy = true // todo define property or use symbol
+                            } else if (
+                                node?.parent.context?.[directive.value]
+                            ) {
+                                node.parent.context[directive.value] = new Proxy(node.parent.context[directive.value], arrayHandler)
+                                node.parent.context[directive.value].__isProxy = true // todo define property or use symbol
+                            }
+                        }
+
+                        node.directives.push(directive)
                         break
+                    default:
                 }
             }
         )
 
-        if (node.directives.length === 0) {
-            node.children.forEach(this.applyDirectives.bind(this))
-        }
-
-        return node
+        return componentsObjects
     }
 
-    private renderChild(node: TemplateNode, root: Component) {
+    private renderChild(node: TemplateNode, root: Component, ignoreDirectives: boolean = false): Component[] {
+        if (!ignoreDirectives && node.directives.length) {
+            return this.renderChildWithDirective(node, root)
+        }
+
         const componentObject: Component = Factory.create(
             node.name
         )
@@ -140,11 +183,11 @@ export class Templater {
             )
         )
 
-        root.append(componentObject)
-
         node.children.forEach(
-            child => this.renderChild(child, componentObject)
+            child => componentObject.append(this.renderChild(child, componentObject))
         )
+
+        return [componentObject]
     }
 
     private parse(template: string): TemplateNode {
