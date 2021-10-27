@@ -89,44 +89,27 @@ export class Templater {
                             1
                         );
 
-                        const items = this.controller?.[directive.value] || node?.parent.context?.[directive.value] || [];
-                        items.forEach(
-                            item => {
-                                node.context = item
-
-                                componentsObjects.push(
-                                    ...this.renderChild(
-                                        {...node, context: item} as TemplateNode,
-                                        root
-                                    )
-                                )
-                            }
-                        )
+                        const container = this.controller || node?.parent.context
+                        const items = container[directive.value];
 
                         if (!items.__isProxy) {
-                            const arrayHandler = new ArrayHandler(
-                                new DomArray(
-                                    root,
-                                    item => {
-                                        node.context = item
-                                        return this.renderChild(
-                                            node, root, true
-                                        )
-                                    }
+                            container[directive.value] = new Proxy(
+                                [],
+                                new ArrayHandler(
+                                    new DomArray(
+                                        root,
+                                        item => {
+                                            node.context = item
+                                            return this.renderChild(
+                                                node, root, true
+                                            )
+                                        }
+                                    )
                                 )
-                            );
+                            )
+                            container.__isProxy = true // todo define property or use symbol
 
-                            if (
-                                this.controller?.[directive.value]
-                            ) {
-                                this.controller[directive.value] = new Proxy(this.controller[directive.value], arrayHandler)
-                                this.controller[directive.value].__isProxy = true // todo define property or use symbol
-                            } else if (
-                                node?.parent.context?.[directive.value]
-                            ) {
-                                node.parent.context[directive.value] = new Proxy(node.parent.context[directive.value], arrayHandler)
-                                node.parent.context[directive.value].__isProxy = true // todo define property or use symbol
-                            }
+                            container[directive.value].push(...items)
                         }
 
                         node.directives.push(directive)
