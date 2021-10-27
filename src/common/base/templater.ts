@@ -89,7 +89,7 @@ export class Templater {
                             1
                         );
 
-                        const container = this.controller || node?.parent.context
+                        const container = node?.parent.context || this.controller
                         const items = container[directive.value];
 
                         if (!items.__isProxy) {
@@ -117,7 +117,12 @@ export class Templater {
                                         )
                                         container['__isProxy'] = true // todo define property or use symbol
 
-                            container[directive.value].push(...items)
+                                        container[directive.value].push(...value)
+                                    }
+                                }
+                            )
+
+                            container[directive.value] = items
                         }
 
                         node.directives.push(directive)
