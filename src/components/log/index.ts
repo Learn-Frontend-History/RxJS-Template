@@ -10,8 +10,20 @@ export class LogController {
         return this.groups.slice(-1)[0]
     }
 
-    addRow(group: any, row: any) {
-        group.rows.push(row)
+    addSubGroup(group: any, subGroup: any) {
+        group.subGroups.push(subGroup)
+
+        return group.subGroups.slice(-1)[0]
+    }
+
+    addRow(subGroup: any, row: any) {
+        subGroup.rows.push(row)
+
+        return subGroup.rows.slice(-1)[0]
+    }
+
+    clear() {
+        this.groups = []
     }
 }
 

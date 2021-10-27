@@ -6,6 +6,10 @@ import GroupToggle from "@/components/icons/toggle/icon/class";
 import {Factory} from "@/base/factory";
 
 export default class LogRowsGroup extends Component {
+    get rows(): HTMLElement {
+        return this.child('rows')
+    }
+
     constructor() {
         super(html);
 
@@ -42,13 +46,17 @@ export default class LogRowsGroup extends Component {
     }
 
     append(controls: Component[]) {
-        this.child('rows').append(
+        this.rows.append(
             ...controls.map(control => control.component)
         )
     }
 
     setContent(content: string) {
         //
+    }
+
+    clear() {
+        this.rows.innerHTML = ''
     }
 }
 
