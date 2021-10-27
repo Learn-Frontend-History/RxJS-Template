@@ -93,21 +93,29 @@ export class Templater {
                         const items = container[directive.value];
 
                         if (!items.__isProxy) {
-                            container[directive.value] = new Proxy(
-                                [],
-                                new ArrayHandler(
-                                    new DomArray(
-                                        root,
-                                        item => {
-                                            node.context = item
-                                            return this.renderChild(
-                                                node, root, true
+                            delete container[directive.value]
+                            Object.defineProperty(
+                                container,
+                                directive.value,
+                                {
+                                    get: () => container[`_${directive.value}`],
+                                    set: value => {
+                                        root.clear()
+                                        container[`_${directive.value}`] = new Proxy(
+                                            [],
+                                            new ArrayHandler(
+                                                new DomArray(
+                                                    root,
+                                                    item => {
+                                                        node.context = item
+                                                        return this.renderChild(
+                                                            node, root, true
+                                                        )
+                                                    }
+                                                )
                                             )
-                                        }
-                                    )
-                                )
-                            )
-                            container.__isProxy = true // todo define property or use symbol
+                                        )
+                                        container['__isProxy'] = true // todo define property or use symbol
 
                             container[directive.value].push(...items)
                         }

@@ -34,4 +34,8 @@ export class Component {
     public setContent(content: string) {
         this.component.innerText = content
     }
+
+    public clear() {
+        this.component.innerHTML = ''
+    }
 }
