@@ -149,7 +149,20 @@ export class Templater {
         }
 
         if (node.content !== null) {
-            componentObject.setContent(node.content)
+            let name = node.content.match(/{{(?<name>[^{}]+)}}/)?.groups?.name
+            if (name) {
+                name = name.trim()
+                const initValue = this.controller[name]
+                delete this.controller[name]
+
+                Object.defineProperty(this.controller, name, {
+                    set: componentObject.setContent.bind(componentObject)
+                })
+
+                this.controller[name] = initValue
+            } else {
+                componentObject.setContent(node.content)
+            }
         }
 
         node.attributes.forEach(
