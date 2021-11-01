@@ -8,12 +8,22 @@ export class HolderController {
 
     private stopCallBack: () => void
 
-    show(stopCallBack?: () => void) {
+    show(
+        {
+            header,
+            stopCallBack = null
+        }: {
+            header: string,
+            stopCallBack?: () => void
+        }
+    ) {
+        this.header = header
         this.stopCallBack = stopCallBack
 
         this.timerActive = true
         this.display = true
     }
+
     hide() {
         if (this.stopCallBack) {
             this.stopCallBack()
