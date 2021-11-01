@@ -6,24 +6,11 @@ import {Factory} from "@/base/factory";
 
 export class Holder extends Component {
     constructor() {
-        super(html);
-
-        const animation = Factory.create('animation')
-        animation.set('display', true)
-
-        const executionTime = Factory.create('execution-time')
-        executionTime.set('active', true)
-
-        this.child('animation').append(animation.component)
-        this.child('execution-time').append(executionTime.component)
-
+        super(html)
     }
 
     set(name, value) {
         switch (name) {
-            case 'header':
-                this.child('header').innerText = value
-                break
             case 'display':
                 if (value) {
                     this.component.style.display = 'grid'
@@ -39,7 +26,7 @@ export class Holder extends Component {
     }
 
     append(controls: Component[]) {
-        this.child('controls').append(
+        this.component.append(
             ...controls.map(control => control.component)
         )
     }
